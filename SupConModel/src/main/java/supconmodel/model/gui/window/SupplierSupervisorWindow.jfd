@@ -1,0 +1,225 @@
+JFDML JFormDesigner: "8.2.4.0.393" Java: "17.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.GridBagLayout ) {
+			"$columnSpecs": "0, 81, 32, 0, 0"
+			"$rowSpecs": "0, 0"
+			"$hGap": 5
+			"$vGap": 5
+			"$alignLeft": true
+			"$alignTop": true
+		} ) {
+			name: "this"
+			"resizable": false
+			"minimumSize": new java.awt.Dimension( 800, 600 )
+			"preferredSize": new java.awt.Dimension( 800, 600 )
+			"title": "Supplier Supervisor"
+			add( new FormComponent( "com.jformdesigner.designer.wrapper.HSpacer" ) {
+				name: "hSpacer1"
+				"foreground": sfield java.awt.Color white
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"weightx": 1.0
+				"insets": new java.awt.Insets( 5, 5, 5, 5 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "bPreviousSupplier"
+				"text": "Previous"
+				"font": &Font0 new java.awt.Font( "JetBrains Mono", 0, 12 )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"hAlign": 0
+				"insets": new java.awt.Insets( 5, 5, 5, 5 )
+				"gridx": 1
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "lCurrentSupplierID"
+				"text": "1"
+				"font": #Font0
+				"horizontalAlignment": 0
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 2
+				"hAlign": 0
+				"insets": new java.awt.Insets( 5, 5, 5, 5 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "bNextSupplier"
+				"text": "Next"
+				"font": #Font0
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 3
+				"hAlign": 0
+				"insets": new java.awt.Insets( 5, 5, 5, 5 )
+			} )
+			add( new FormComponent( "com.jformdesigner.designer.wrapper.HSpacer" ) {
+				name: "hSpacer2"
+				"foreground": sfield java.awt.Color white
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 4
+				"weightx": 1.0
+				"insets": new java.awt.Insets( 5, 5, 5, 5 )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+				"$columnSpecs": "0, 0"
+				"$rowSpecs": "0"
+				"$hGap": 5
+				"$vGap": 5
+				"$alignLeft": true
+				"$alignTop": true
+			} ) {
+				name: "panel2"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+					"$columnSpecs": "0, 77"
+					"$rowSpecs": "0, 0, 0, 0, 0, 0"
+					"$hGap": 5
+					"$vGap": 5
+					"$alignLeft": true
+					"$alignTop": true
+				} ) {
+					name: "panel1"
+					"foreground": sfield java.awt.Color lightGray
+					"font": new java.awt.Font( "JetBrains Mono", 0, 12 )
+					"background": sfield java.awt.Color white
+					"minimumSize": new java.awt.Dimension( 300, 300 )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label1"
+						"text": "Total Profit"
+						"font": &Font1 new java.awt.Font( "JetBrains Mono", 0, 12 )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"insets": new java.awt.Insets( 2, 2, 2, 2 )
+						"hAlign": 4
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "lTotalProfit"
+						"text": "500000"
+						"font": #Font1
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 1
+						"insets": new java.awt.Insets( 2, 2, 2, 2 )
+						"hAlign": 0
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label8"
+						"text": "Total Income"
+						"font": #Font1
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridy": 1
+						"hAlign": 4
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label9"
+						"text": "0"
+						"font": #Font1
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 1
+						"gridy": 1
+						"hAlign": 0
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label2"
+						"text": "Total Cost"
+						"font": #Font1
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridy": 2
+						"insets": new java.awt.Insets( 2, 2, 2, 2 )
+						"hAlign": 4
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "lTotalCost"
+						"text": "0"
+						"font": #Font1
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 1
+						"gridy": 2
+						"insets": new java.awt.Insets( 2, 2, 2, 2 )
+						"hAlign": 0
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label3"
+						"text": "Last Profit"
+						"font": #Font1
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridy": 3
+						"insets": new java.awt.Insets( 2, 2, 2, 2 )
+						"hAlign": 4
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "lLastProfit"
+						"text": "0"
+						"font": #Font1
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 1
+						"gridy": 3
+						"insets": new java.awt.Insets( 2, 2, 2, 2 )
+						"hAlign": 0
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label7"
+						"text": "Last Cost"
+						"font": #Font1
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridy": 4
+						"insets": new java.awt.Insets( 2, 2, 2, 2 )
+						"hAlign": 4
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "llastCost"
+						"text": "0"
+						"font": #Font1
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 1
+						"gridy": 4
+						"insets": new java.awt.Insets( 2, 2, 2, 2 )
+						"hAlign": 0
+					} )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"weightx": 1.0
+					"weighty": 1.0
+					"insets": new java.awt.Insets( 5, 5, 5, 5 )
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+					"$columnSpecs": "0"
+					"$rowSpecs": "0, 0"
+					"$hGap": 5
+					"$vGap": 5
+					"$alignLeft": true
+					"$alignTop": true
+				} ) {
+					name: "panel3"
+					"background": sfield java.awt.Color white
+					"font": new java.awt.Font( "JetBrains Mono", 0, 12 )
+					"foreground": sfield java.awt.Color lightGray
+					"minimumSize": new java.awt.Dimension( 400, 400 )
+					add( new FormComponent( "supconmodel.model.customChart.CustomLineChart" ) {
+						name: "customLineChart1"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"insets": new java.awt.Insets( 5, 5, 5, 5 )
+						"weightx": 1.0
+						"weighty": 1.0
+					} )
+					add( new FormComponent( "supconmodel.model.customChart.CustomLineChart" ) {
+						name: "customLineChart2"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridy": 1
+						"insets": new java.awt.Insets( 5, 5, 5, 5 )
+						"weightx": 1.0
+						"weighty": 1.0
+					} )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 1
+					"weightx": 1.0
+					"weighty": 1.0
+					"insets": new java.awt.Insets( 5, 5, 5, 5 )
+				} )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridy": 1
+				"weightx": 1.0
+				"weighty": 1.0
+				"gridwidth": 5
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 5, 0 )
+			"size": new java.awt.Dimension( 800, 600 )
+		} )
+	}
+}
