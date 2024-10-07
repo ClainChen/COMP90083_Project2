@@ -12,7 +12,6 @@ new FormModel {
 			"$alignTop": true
 		} ) {
 			name: "this"
-			"resizable": false
 			"minimumSize": new java.awt.Dimension( 800, 600 )
 			"preferredSize": new java.awt.Dimension( 800, 600 )
 			"title": "Consumer Supervisor"
@@ -24,31 +23,18 @@ new FormModel {
 				"weightx": 1.0
 				"insets": new java.awt.Insets( 5, 5, 5, 5 )
 			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "bPreviousConsumer"
-				"text": "Previous"
-				"font": &Font0 new java.awt.Font( "JetBrains Mono", 0, 12 )
-			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-				"hAlign": 0
-				"insets": new java.awt.Insets( 5, 5, 5, 5 )
-				"gridx": 1
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "lCurrentConsumerID"
-				"text": "1000"
-				"font": #Font0
-				"horizontalAlignment": 0
+			add( new FormComponent( "javax.swing.JSpinner" ) {
+				name: "tCurrentConsumerID"
+				"font": new java.awt.Font( "JetBrains Mono", 0, 12 )
+				"model": new javax.swing.SpinnerNumberModel {
+					minimum: 0
+				}
+				auxiliary() {
+					"JavaCodeGenerator.variableModifiers": 1
+				}
+				addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "tCurrentConsumerIDStateChanged", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 				"gridx": 2
-				"hAlign": 0
-				"insets": new java.awt.Insets( 5, 5, 5, 5 )
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "bNextConsumer"
-				"text": "Next"
-				"font": #Font0
-			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-				"gridx": 3
 				"hAlign": 0
 				"insets": new java.awt.Insets( 5, 5, 5, 5 )
 			} )
@@ -68,7 +54,7 @@ new FormModel {
 			} ) {
 				name: "panel1"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
-					"$columnSpecs": "0, 0, 31"
+					"$columnSpecs": "0, 0"
 					"$rowSpecs": "0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0"
 					"$hGap": 5
 					"$vGap": 5
@@ -76,21 +62,21 @@ new FormModel {
 					"$alignTop": true
 				} ) {
 					name: "panel2"
-					"font": &Font1 new java.awt.Font( "JetBrains Mono", 0, 12 )
+					"font": &Font0 new java.awt.Font( "JetBrains Mono", 0, 12 )
 					"background": sfield java.awt.Color white
 					"minimumSize": new java.awt.Dimension( 300, 280 )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label1"
 						"text": "Level"
-						"font": #Font1
+						"font": #Font0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"hAlign": 4
 						"insets": new java.awt.Insets( 5, 5, 5, 5 )
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label8"
+						name: "lLevel"
 						"text": "1"
-						"font": #Font1
+						"font": #Font0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 1
 						"hAlign": 0
@@ -99,7 +85,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label2"
 						"text": "Basic Demand"
-						"font": #Font1
+						"font": #Font0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridy": 2
 						"hAlign": 4
@@ -107,28 +93,20 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JProgressBar" ) {
 						name: "proBasicDemand"
-						"value": 11
-						"foreground": new java.awt.Color( 0, 255, 102, 255 )
-						"background": sfield java.awt.SystemColor inactiveCaptionBorder
+						"value": 90
+						"foreground": sfield java.awt.Color blue
+						"background": sfield java.awt.Color lightGray
+						"stringPainted": true
+						"font": new java.awt.Font( "JetBrains Mono", 1, 10 )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 1
 						"gridy": 2
 						"insets": new java.awt.Insets( 5, 5, 5, 5 )
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "lBasicDemand"
-						"text": "text"
-						"font": #Font1
-					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-						"gridx": 2
-						"gridy": 2
-						"hAlign": 0
-						"insets": new java.awt.Insets( 5, 5, 5, 5 )
-					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label3"
 						"text": "Convenient Demand"
-						"font": #Font1
+						"font": #Font0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridy": 3
 						"hAlign": 4
@@ -136,26 +114,20 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JProgressBar" ) {
 						name: "proConvenientDemand"
-						"background": sfield java.awt.SystemColor inactiveCaptionBorder
+						"background": sfield java.awt.Color lightGray
+						"value": 90
+						"stringPainted": true
+						"font": &Font1 new java.awt.Font( "JetBrains Mono", 1, 10 )
+						"foreground": sfield java.awt.Color blue
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 1
 						"gridy": 3
 						"insets": new java.awt.Insets( 5, 5, 5, 5 )
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "lConvenientDemand"
-						"text": "text"
-						"font": #Font1
-					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-						"gridx": 2
-						"gridy": 3
-						"hAlign": 0
-						"insets": new java.awt.Insets( 5, 5, 5, 5 )
-					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label4"
 						"text": "Luxury Demand"
-						"font": #Font1
+						"font": #Font0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridy": 4
 						"hAlign": 4
@@ -163,35 +135,29 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JProgressBar" ) {
 						name: "proLuxuryDemand"
-						"background": sfield java.awt.SystemColor inactiveCaptionBorder
+						"background": sfield java.awt.Color lightGray
+						"value": 90
+						"stringPainted": true
+						"font": #Font1
+						"foreground": sfield java.awt.Color blue
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 1
 						"gridy": 4
 						"insets": new java.awt.Insets( 5, 5, 5, 5 )
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "lLuxuryDemand"
-						"text": "text"
-						"font": #Font1
-					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-						"gridx": 2
-						"gridy": 4
-						"hAlign": 0
-						"insets": new java.awt.Insets( 5, 5, 5, 5 )
-					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label5"
 						"text": "Basic Income"
-						"font": #Font1
+						"font": #Font0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridy": 6
 						"hAlign": 4
 						"insets": new java.awt.Insets( 5, 5, 5, 5 )
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label9"
+						name: "lBasicIncome"
 						"text": "5000"
-						"font": #Font1
+						"font": #Font0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 1
 						"gridy": 6
@@ -200,17 +166,17 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label6"
-						"text": "Last Income"
-						"font": #Font1
+						"text": "Current Income"
+						"font": #Font0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridy": 7
 						"hAlign": 4
 						"insets": new java.awt.Insets( 5, 5, 5, 5 )
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label10"
+						name: "lIncome"
 						"text": "8000"
-						"font": #Font1
+						"font": #Font0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 1
 						"gridy": 7
@@ -220,16 +186,16 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label7"
 						"text": "Deposit"
-						"font": #Font1
+						"font": #Font0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridy": 8
 						"hAlign": 4
 						"insets": new java.awt.Insets( 5, 5, 5, 5 )
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label11"
+						name: "lDeposit"
 						"text": "48000"
-						"font": #Font1
+						"font": #Font0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 1
 						"gridy": 8
@@ -285,12 +251,6 @@ new FormModel {
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
 			"size": new java.awt.Dimension( 800, 600 )
-		} )
-		addBindingGroup( new FormBindingGroup( class org.jdesktop.beansbinding.BindingGroup ) {
-			"name": "bindingGroup"
-			addBinding( new FormBinding( "proBasicDemand", "value", "lBasicDemand", "text" ) )
-			addBinding( new FormBinding( "proConvenientDemand", "value", "lConvenientDemand", "text" ) )
-			addBinding( new FormBinding( "proLuxuryDemand", "value", "lLuxuryDemand", "text" ) )
 		} )
 	}
 }

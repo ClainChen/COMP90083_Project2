@@ -13,8 +13,10 @@ new FormModel {
 		} ) {
 			name: "this"
 			"minimumSize": new java.awt.Dimension( 400, 300 )
+			"resizable": false
+			"maximumSize": new java.awt.Dimension( 400, 300 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
-				"$columnSpecs": "0"
+				"$columnSpecs": "94"
 				"$rowSpecs": "0"
 				"$hGap": 5
 				"$vGap": 5
@@ -25,25 +27,24 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "bRefresh"
 					"text": "Refresh"
-				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
+					"font": new java.awt.Font( "JetBrains Mono", 0, 12 )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bRefresh", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"insets": new java.awt.Insets( 2, 2, 2, 2 )
+				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 				"hAlign": 0
 				"vAlign": 0
 				"weightx": 1.0
 			} )
-			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
-				"$columnSpecs": "0, 0"
-				"$rowSpecs": "0, 0, 0"
-				"$hGap": 5
-				"$vGap": 5
-				"$alignLeft": true
-				"$alignTop": true
-			} ) {
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 				name: "pGoodSelect"
+				"preferredSize": new java.awt.Dimension( 400, 240 )
+				"font": new java.awt.Font( "JetBrains Mono", 0, 12 )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-				"gridy": 1
 				"weightx": 1.0
 				"weighty": 1.0
+				"gridy": 1
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

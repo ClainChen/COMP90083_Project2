@@ -20,9 +20,6 @@ public class CustomLineChart extends ChartPanel implements Serializable {
     private String yLabel;
     private String title;
 
-
-
-    // 无参构造函数
     public CustomLineChart() {
         super(null);
         dataset = new XYSeriesCollection();
@@ -30,7 +27,6 @@ public class CustomLineChart extends ChartPanel implements Serializable {
         setChart(chart);
     }
 
-    // 创建图表
     private JFreeChart createChart(XYSeriesCollection dataset) {
         JFreeChart chart = ChartFactory.createXYLineChart(
                 title,
@@ -51,12 +47,7 @@ public class CustomLineChart extends ChartPanel implements Serializable {
     }
 
     public void addData(String seriesKey, double x, double y) {
-        XYSeries series = dataset.getSeries(seriesKey);
-        if (series == null) {
-            series = new XYSeries(seriesKey);
-            dataset.addSeries(series);
-        }
-        series.add(x, y);
+        dataset.getSeries(seriesKey).add(x, y);
     }
 
     public List<String> getSeriesKeys() {
@@ -73,7 +64,6 @@ public class CustomLineChart extends ChartPanel implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
-        resetChart();
     }
 
     public String getxLabel() {
@@ -82,7 +72,6 @@ public class CustomLineChart extends ChartPanel implements Serializable {
 
     public void setxLabel(String xLabel) {
         this.xLabel = xLabel;
-        resetChart();
     }
 
     public String getyLabel() {
@@ -91,11 +80,17 @@ public class CustomLineChart extends ChartPanel implements Serializable {
 
     public void setyLabel(String yLabel) {
         this.yLabel = yLabel;
-        resetChart();
     }
 
-    private void resetChart(){
+    public void resetChart(){
         JFreeChart chart = createChart(dataset);
         setChart(chart);
+    }
+
+    public void resetData(){
+        dataset = new XYSeriesCollection();
+        title = "";
+        xLabel = "";
+        yLabel = "";
     }
 }
