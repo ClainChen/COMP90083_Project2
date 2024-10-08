@@ -82,6 +82,8 @@ public class SupplierSupervisorWindow extends JFrame {
         lgName = new JLabel();
         label28 = new JLabel();
         lgInventory = new JLabel();
+        label4 = new JLabel();
+        lgAlpha = new JLabel();
         label29 = new JLabel();
         lgProduction = new JLabel();
         label6 = new JLabel();
@@ -112,6 +114,7 @@ public class SupplierSupervisorWindow extends JFrame {
         setMinimumSize(new Dimension(800, 600));
         setPreferredSize(new Dimension(800, 600));
         setTitle("Supplier Supervisor");
+        setAlwaysOnTop(true);
         var contentPane = getContentPane();
         contentPane.setLayout(new GridBagLayout());
         ((GridBagLayout)contentPane.getLayout()).columnWidths = new int[] {0, 32, 0};
@@ -143,9 +146,9 @@ public class SupplierSupervisorWindow extends JFrame {
                 panel1.setMinimumSize(new Dimension(300, 300));
                 panel1.setLayout(new GridBagLayout());
                 ((GridBagLayout)panel1.getLayout()).columnWidths = new int[] {0, 82, 0, 0};
-                ((GridBagLayout)panel1.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+                ((GridBagLayout)panel1.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
                 ((GridBagLayout)panel1.getLayout()).columnWeights = new double[] {0.0, 0.0, 0.0, 1.0E-4};
-                ((GridBagLayout)panel1.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
+                ((GridBagLayout)panel1.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
 
                 //---- label1 ----
                 label1.setText("Total Profit");
@@ -256,157 +259,171 @@ public class SupplierSupervisorWindow extends JFrame {
                     GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                     new Insets(2, 2, 7, 7), 0, 0));
 
+                //---- label4 ----
+                label4.setText("Production Alpha");
+                label4.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
+                panel1.add(label4, new GridBagConstraints(0, 9, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
+                    new Insets(0, 0, 5, 5), 0, 0));
+
+                //---- lgAlpha ----
+                lgAlpha.setText("0");
+                lgAlpha.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
+                panel1.add(lgAlpha, new GridBagConstraints(1, 9, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
+                    new Insets(0, 0, 5, 5), 0, 0));
+
                 //---- label29 ----
                 label29.setText("Production");
                 label29.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel1.add(label29, new GridBagConstraints(0, 9, 1, 1, 0.0, 0.0,
+                panel1.add(label29, new GridBagConstraints(0, 10, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
                     new Insets(0, 0, 5, 5), 0, 0));
 
                 //---- lgProduction ----
                 lgProduction.setText("0");
                 lgProduction.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel1.add(lgProduction, new GridBagConstraints(1, 9, 1, 1, 0.0, 0.0,
+                panel1.add(lgProduction, new GridBagConstraints(1, 10, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                     new Insets(0, 0, 5, 5), 0, 0));
 
                 //---- label6 ----
                 label6.setText("Cost");
                 label6.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel1.add(label6, new GridBagConstraints(0, 10, 1, 1, 0.0, 0.0,
+                panel1.add(label6, new GridBagConstraints(0, 11, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
                     new Insets(2, 2, 7, 7), 0, 0));
 
                 //---- lgCost ----
                 lgCost.setText("0");
                 lgCost.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel1.add(lgCost, new GridBagConstraints(1, 10, 1, 1, 0.0, 0.0,
+                panel1.add(lgCost, new GridBagConstraints(1, 11, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                     new Insets(2, 2, 7, 7), 0, 0));
 
                 //---- label9 ----
                 label9.setText("Expect profitability");
                 label9.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel1.add(label9, new GridBagConstraints(0, 11, 1, 1, 0.0, 0.0,
+                panel1.add(label9, new GridBagConstraints(0, 12, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
                     new Insets(2, 2, 7, 7), 0, 0));
 
                 //---- lgEP ----
                 lgEP.setText("0");
                 lgEP.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel1.add(lgEP, new GridBagConstraints(1, 11, 1, 1, 0.0, 0.0,
+                panel1.add(lgEP, new GridBagConstraints(1, 12, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                     new Insets(2, 2, 7, 7), 0, 0));
 
                 //---- label10 ----
                 label10.setText("Price");
                 label10.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel1.add(label10, new GridBagConstraints(0, 12, 1, 1, 0.0, 0.0,
+                panel1.add(label10, new GridBagConstraints(0, 13, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
                     new Insets(2, 2, 7, 7), 0, 0));
 
                 //---- lgPrice ----
                 lgPrice.setText("0");
                 lgPrice.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel1.add(lgPrice, new GridBagConstraints(1, 12, 1, 1, 0.0, 0.0,
+                panel1.add(lgPrice, new GridBagConstraints(1, 13, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                     new Insets(2, 2, 7, 7), 0, 0));
 
                 //---- label11 ----
                 label11.setText("Total income");
                 label11.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel1.add(label11, new GridBagConstraints(0, 13, 1, 1, 0.0, 0.0,
+                panel1.add(label11, new GridBagConstraints(0, 14, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
                     new Insets(2, 2, 7, 7), 0, 0));
 
                 //---- lgTotalIncome ----
                 lgTotalIncome.setText("0");
                 lgTotalIncome.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel1.add(lgTotalIncome, new GridBagConstraints(1, 13, 1, 1, 0.0, 0.0,
+                panel1.add(lgTotalIncome, new GridBagConstraints(1, 14, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                     new Insets(2, 2, 7, 7), 0, 0));
 
                 //---- label12 ----
                 label12.setText("Last income");
                 label12.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel1.add(label12, new GridBagConstraints(0, 14, 1, 1, 0.0, 0.0,
+                panel1.add(label12, new GridBagConstraints(0, 15, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
                     new Insets(2, 2, 7, 7), 0, 0));
 
                 //---- lgLastIncome ----
                 lgLastIncome.setText("0");
                 lgLastIncome.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel1.add(lgLastIncome, new GridBagConstraints(1, 14, 1, 1, 0.0, 0.0,
+                panel1.add(lgLastIncome, new GridBagConstraints(1, 15, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                     new Insets(2, 2, 7, 7), 0, 0));
 
                 //---- label16 ----
                 label16.setText("Total sold num");
                 label16.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel1.add(label16, new GridBagConstraints(0, 15, 1, 1, 0.0, 0.0,
+                panel1.add(label16, new GridBagConstraints(0, 16, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
                     new Insets(2, 2, 7, 7), 0, 0));
 
                 //---- lgTotalSoldNum ----
                 lgTotalSoldNum.setText("0");
                 lgTotalSoldNum.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel1.add(lgTotalSoldNum, new GridBagConstraints(1, 15, 1, 1, 0.0, 0.0,
+                panel1.add(lgTotalSoldNum, new GridBagConstraints(1, 16, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                     new Insets(2, 2, 7, 7), 0, 0));
 
                 //---- label17 ----
                 label17.setText("Last sold num");
                 label17.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel1.add(label17, new GridBagConstraints(0, 16, 1, 1, 0.0, 0.0,
+                panel1.add(label17, new GridBagConstraints(0, 17, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
                     new Insets(2, 2, 7, 7), 0, 0));
 
                 //---- lgLastSoldNum ----
                 lgLastSoldNum.setText("0");
                 lgLastSoldNum.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel1.add(lgLastSoldNum, new GridBagConstraints(1, 16, 1, 1, 0.0, 0.0,
+                panel1.add(lgLastSoldNum, new GridBagConstraints(1, 17, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                     new Insets(2, 2, 7, 7), 0, 0));
 
                 //---- label13 ----
                 label13.setText("Basic");
                 label13.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel1.add(label13, new GridBagConstraints(0, 17, 1, 1, 0.0, 0.0,
+                panel1.add(label13, new GridBagConstraints(0, 18, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
                     new Insets(2, 2, 7, 7), 0, 0));
 
                 //---- lgBasic ----
                 lgBasic.setText("0");
                 lgBasic.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel1.add(lgBasic, new GridBagConstraints(1, 17, 1, 1, 0.0, 0.0,
+                panel1.add(lgBasic, new GridBagConstraints(1, 18, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                     new Insets(2, 2, 7, 7), 0, 0));
 
                 //---- label14 ----
                 label14.setText("Convenient");
                 label14.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel1.add(label14, new GridBagConstraints(0, 18, 1, 1, 0.0, 0.0,
+                panel1.add(label14, new GridBagConstraints(0, 19, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
                     new Insets(2, 2, 7, 7), 0, 0));
 
                 //---- lgConvenient ----
                 lgConvenient.setText("0");
                 lgConvenient.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel1.add(lgConvenient, new GridBagConstraints(1, 18, 1, 1, 0.0, 0.0,
+                panel1.add(lgConvenient, new GridBagConstraints(1, 19, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                     new Insets(2, 2, 7, 7), 0, 0));
 
                 //---- label15 ----
                 label15.setText("Luxury");
                 label15.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel1.add(label15, new GridBagConstraints(0, 19, 1, 1, 0.0, 0.0,
+                panel1.add(label15, new GridBagConstraints(0, 20, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
                     new Insets(2, 2, 2, 7), 0, 0));
 
                 //---- lgLuxury ----
                 lgLuxury.setText("0");
                 lgLuxury.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel1.add(lgLuxury, new GridBagConstraints(1, 19, 1, 1, 0.0, 0.0,
+                panel1.add(lgLuxury, new GridBagConstraints(1, 20, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                     new Insets(2, 2, 2, 7), 0, 0));
             }
@@ -464,6 +481,7 @@ public class SupplierSupervisorWindow extends JFrame {
         lgName.setText(good.name);
         lgInventory.setText(String.valueOf(good.inventory));
         lgProduction.setText(String.valueOf(good.production));
+        lgAlpha.setText(String.format("%.3f", good.productiveAlpha));
         lgCost.setText(String.format("%.3f", good.cost));
         lgEP.setText(String.format("%.3f", good.expectProfitability));
         lgPrice.setText(String.format("%.3f", good.price));
@@ -519,6 +537,8 @@ public class SupplierSupervisorWindow extends JFrame {
     private JLabel lgName;
     private JLabel label28;
     private JLabel lgInventory;
+    private JLabel label4;
+    private JLabel lgAlpha;
     private JLabel label29;
     private JLabel lgProduction;
     private JLabel label6;

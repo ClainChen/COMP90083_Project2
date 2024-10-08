@@ -56,15 +56,16 @@ public class Tools {
      * @param k: good's competitive factor
      * @return good's final price
      */
-    public static double price(double c, double m, int h, int N, int maxInventory, int inventory, double k){
+    public static double price(double c, double m, int h, int N, int maxInventory, int inventory, double k, boolean strategy){
+        // TODO
 
         double basicPrice = c + m*c;
         double Nh = 0.2 * Nh(h, N);
         double discount = 0.8 * discountFactor(maxInventory, inventory, N);
 
-        double competitive = k + 0.3;
+//        double competitive = k + 0.3;
 
-        double result = basicPrice * (1 + Nh - discount) * competitive;
+        double result = basicPrice * (1 + Nh - discount);
         if (1 + Nh - discount > 1){
             System.out.printf("%.3f, %.3f%n", Nh, discount);
         }
@@ -73,7 +74,9 @@ public class Tools {
 //            System.out.printf("%.3f, %.3f, %.3f, %.3f%n", basicPrice, Nh, discount, competitive);
 //            System.out.printf("%.3f%n", result);
 //        }
-        return Math.max(result, c * 0.75);
+        double resultPrice = Math.max(result, c * 0.75);
+//        return strategy ? Math.max(0.6 * resultPrice, c) : resultPrice;
+        return resultPrice;
     }
 
     public static double discountFactor(int maxInventory, int inventory, int N){
@@ -101,6 +104,7 @@ public class Tools {
     public static double propBuy(int goodID, double goodBasic, double goodConvenience, double goodLuxury,
                                  double goodPrice, int goodSoldNum, int inventory, double competitive,
                                  Consumer consumer, boolean isBasic, boolean isFirstFilter){
+        // TODO
         if (inventory <= 0){
             return 0;
         }
@@ -125,16 +129,29 @@ public class Tools {
     }
 
     public static int productive(DynamicGood good, ConsumerController consumerController){
-        double tBD = consumerController.getTotalDemand(Enums.GoodType.BASIC);
-        double tCD = consumerController.getTotalDemand(Enums.GoodType.CONVENIENCE);
-        double tLD = consumerController.getTotalDemand(Enums.GoodType.LUXURY);
-
-        double result = ((Parameters.prod_basic * tBD / Math.max(1, good.basic)) +
-                        (Parameters.prod_convenient * tCD / Math.max(1, good.convenience)) +
-                        (Parameters.prod_luxury * tLD / Math.max(1, good.luxury))) *
-                        (Parameters.prod_a * Math.log((good.getLast7SoldNum() /good.cost+1) + 2));
-        int output = (int) Math.round(result * productiveDiscount(good, 0.8));
-        return Math.max(0, output);
+        // TODO
+//        int numConsumer = consumerController.consumers.size();
+//        double tBD = consumerController.getTotalDemand(Enums.GoodType.BASIC);
+//        double tCD = consumerController.getTotalDemand(Enums.GoodType.CONVENIENCE);
+//        double tLD = consumerController.getTotalDemand(Enums.GoodType.LUXURY);
+//
+//
+//        double result = ((Parameters.prod_basic * tBD  / Math.max(1, good.basic)) +
+//                        (Parameters.prod_convenient * tCD / Math.max(1, good.convenience)) +
+//                        (Parameters.prod_luxury * tLD / Math.max(1, good.luxury)))
+//                       * (Parameters.prod_a * Math.log((good.getLast7SoldNum() + 1)));
+//        int output = (int) Math.round(result * productiveDiscount(good, 0.8));
+//        return Math.max(0, output);
+        double last14 = good.getLast14SoldNum();
+        double last7 = good.getLast7SoldNum();
+        double llast7 = last14 - last7;
+        if (llast7 == 0){
+            return (int) last7;
+        }else{
+            good.productiveAlpha *= Math.max(1 / llast7, last7 / llast7);
+            good.productiveAlpha = Math.clamp(good.productiveAlpha, 0.625, 1.6);
+            return (int) (last7 * good.productiveAlpha * productiveDiscount(good, 0.8));
+        }
     }
 
     public static double productiveDiscount(DynamicGood good, double alpha){

@@ -15,6 +15,7 @@ new FormModel {
 			"minimumSize": new java.awt.Dimension( 800, 600 )
 			"preferredSize": new java.awt.Dimension( 800, 600 )
 			"title": "Good Supervisor"
+			"alwaysOnTop": true
 			add( new FormComponent( "javax.swing.JSpinner" ) {
 				name: "tCurrentGoodID"
 				"font": new java.awt.Font( "JetBrains Mono", 0, 12 )

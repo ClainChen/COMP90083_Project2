@@ -78,6 +78,7 @@ public class GoodSupervisorWindow extends JFrame {
         setMinimumSize(new Dimension(800, 600));
         setPreferredSize(new Dimension(800, 600));
         setTitle("Good Supervisor");
+        setAlwaysOnTop(true);
         var contentPane = getContentPane();
         contentPane.setLayout(new GridBagLayout());
         ((GridBagLayout)contentPane.getLayout()).columnWidths = new int[] {0, 0, 0};

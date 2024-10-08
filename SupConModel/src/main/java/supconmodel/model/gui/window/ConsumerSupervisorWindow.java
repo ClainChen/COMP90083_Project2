@@ -75,6 +75,7 @@ public class ConsumerSupervisorWindow extends JFrame {
         setPreferredSize(new Dimension(800, 600));
         setTitle("Consumer Supervisor");
         setBackground(SystemColor.window);
+        setAlwaysOnTop(true);
         var contentPane = getContentPane();
         contentPane.setLayout(new GridBagLayout());
         ((GridBagLayout)contentPane.getLayout()).columnWidths = new int[] {0, 0, 53, 0, 0, 0};

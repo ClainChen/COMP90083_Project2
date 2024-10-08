@@ -16,6 +16,7 @@ new FormModel {
 			"preferredSize": new java.awt.Dimension( 800, 600 )
 			"title": "Consumer Supervisor"
 			"background": sfield java.awt.SystemColor window
+			"alwaysOnTop": true
 			add( new FormComponent( "com.jformdesigner.designer.wrapper.HSpacer" ) {
 				name: "hSpacer1"
 				"foreground": sfield java.awt.Color white

@@ -24,6 +24,7 @@ public class DynamicGood extends Good{
     public ArrayList<Double> incomeHistory;
     public double lastCost;
 
+    public double productiveAlpha = 1;
 
     public GoodDataRecorder dataRecorder;
 
@@ -45,7 +46,11 @@ public class DynamicGood extends Good{
     }
 
     public void setPrice(int N, double competitiveRate){
-        this.price = Tools.price(cost, expectProfitability, getLast7SoldNum(), N, getMaxInventory(), inventory, competitiveRate);
+        double last7Income = getLast7Income();
+        double last14Income = getLast14Income();
+        double llast7Income = last14Income - last7Income;
+        boolean strategy = llast7Income * 0.7 > last7Income;
+        this.price = Tools.price(cost, expectProfitability, getLast7SoldNum(), N, getMaxInventory(), inventory, competitiveRate, strategy);
     }
 
     private int getMaxInventory(){
@@ -76,10 +81,36 @@ public class DynamicGood extends Good{
         return soldNum;
     }
 
+    public int getLast14SoldNum(){
+        int soldNum = 0;
+        int historyLength = soldNumHistory.size();
+        for (int i = 0; i < 14; i++){
+            if (i < historyLength - 1){
+                soldNum += soldNumHistory.get(historyLength - i - 1);
+            }else{
+                break;
+            }
+        }
+        return soldNum;
+    }
+
     public double getLast7Income(){
         double totalIncome = 0;
         int historyLength = incomeHistory.size();
         for (int i = 0; i < 7; i++){
+            if (i < historyLength - 1){
+                totalIncome += incomeHistory.get(historyLength - i - 1);
+            }else{
+                break;
+            }
+        }
+        return totalIncome;
+    }
+
+    public double getLast14Income(){
+        double totalIncome = 0;
+        int historyLength = incomeHistory.size();
+        for (int i = 0; i < 14; i++){
             if (i < historyLength - 1){
                 totalIncome += incomeHistory.get(historyLength - i - 1);
             }else{
