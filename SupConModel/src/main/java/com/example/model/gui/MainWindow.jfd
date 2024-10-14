@@ -98,7 +98,7 @@ new FormModel {
 				name: "panel1"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
 					"$columnSpecs": "0, 0"
-					"$rowSpecs": "0, 0, 0, 0, 0"
+					"$rowSpecs": "0, 0, 0, 0, 0, 0, 0, 0, 0, 0"
 					"$hGap": 5
 					"$vGap": 5
 					"$alignLeft": true
@@ -209,9 +209,90 @@ new FormModel {
 						"gridx": 1
 						"gridy": 4
 					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label7"
+						"text": "Avg Sale Price: "
+						"font": &Font3 new java.awt.Font( "JetBrains Mono", 0, 12 )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridy": 5
+						"hAlign": 4
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "lASP"
+						"text": "0"
+						"font": &Font4 new java.awt.Font( "JetBrains Mono", 0, 12 )
+						auxiliary() {
+							"JavaCodeGenerator.variableModifiers": 1
+						}
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 1
+						"gridy": 5
+						"hAlign": 0
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label8"
+						"text": "% Start Money Used: "
+						"font": #Font3
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridy": 6
+						"hAlign": 4
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "lpSMU"
+						"text": "0"
+						"font": #Font4
+						auxiliary() {
+							"JavaCodeGenerator.variableModifiers": 1
+						}
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 1
+						"gridy": 6
+						"hAlign": 0
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label10"
+						"text": "Num Sold out: "
+						"font": &Font5 new java.awt.Font( "JetBrains Mono", 0, 12 )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridy": 7
+						"hAlign": 4
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "lNumSoldOut"
+						"text": "0"
+						"font": #Font5
+						auxiliary() {
+							"JavaCodeGenerator.variableModifiers": 1
+						}
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 1
+						"gridy": 7
+						"hAlign": 0
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label11"
+						"text": "Num Satisfied: "
+						"font": #Font5
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridy": 8
+						"hAlign": 4
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "lNumSatisfied"
+						"text": "0"
+						"font": #Font5
+						auxiliary() {
+							"JavaCodeGenerator.variableModifiers": 1
+						}
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 1
+						"gridy": 8
+						"hAlign": 0
+					} )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 					"weightx": 1.0
 					"weighty": 1.0
+					"insets": new java.awt.Insets( 4, 4, 4, 4 )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
 					"$columnSpecs": "0, 0, 0"
@@ -301,6 +382,7 @@ new FormModel {
 					"gridx": 1
 					"weightx": 3.0
 					"weighty": 3.0
+					"insets": new java.awt.Insets( 4, 4, 4, 4 )
 				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 				"gridy": 1

@@ -19,6 +19,10 @@ public class Supervisor {
     public ArrayList<Integer> totalBoughtHistory;
     public ArrayList<Integer> totalDemandHistory;
 
+    public ArrayList<Double> maxBudgetHistory;
+    public ArrayList<Double> minBudgetHistory;
+    public ArrayList<Double> avgBudgetHistory;
+
     public Supervisor() {
         maxPriceHistory = new ArrayList<>();
         minPriceHistory = new ArrayList<>();
@@ -32,5 +36,8 @@ public class Supervisor {
         totalInventoryHistory = new ArrayList<>();
         totalBoughtHistory = new ArrayList<>();
         totalDemandHistory = new ArrayList<>();
+        maxBudgetHistory = new ArrayList<>();
+        minBudgetHistory = new ArrayList<>();
+        avgBudgetHistory = new ArrayList<>();
     }
 }

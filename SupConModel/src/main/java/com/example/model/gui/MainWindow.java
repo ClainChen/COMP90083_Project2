@@ -131,6 +131,14 @@ public class MainWindow extends JFrame {
         sNumBuyers = new JSpinner();
         label6 = new JLabel();
         sNumSellers = new JSpinner();
+        label7 = new JLabel();
+        lASP = new JLabel();
+        label8 = new JLabel();
+        lpSMU = new JLabel();
+        label10 = new JLabel();
+        lNumSoldOut = new JLabel();
+        label11 = new JLabel();
+        lNumSatisfied = new JLabel();
         panel3 = new JPanel();
         chart1 = new LineChart();
         chart2 = new LineChart();
@@ -242,9 +250,9 @@ public class MainWindow extends JFrame {
             {
                 panel2.setLayout(new GridBagLayout());
                 ((GridBagLayout)panel2.getLayout()).columnWidths = new int[] {0, 0, 0};
-                ((GridBagLayout)panel2.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0};
+                ((GridBagLayout)panel2.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
                 ((GridBagLayout)panel2.getLayout()).columnWeights = new double[] {0.0, 0.0, 1.0E-4};
-                ((GridBagLayout)panel2.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
+                ((GridBagLayout)panel2.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
 
                 //---- label2 ----
                 label2.setText("Buyer Strategy");
@@ -321,7 +329,7 @@ public class MainWindow extends JFrame {
                 label6.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
                 panel2.add(label6, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
-                    new Insets(0, 0, 0, 5), 0, 0));
+                    new Insets(0, 0, 5, 5), 0, 0));
 
                 //---- sNumSellers ----
                 sNumSellers.setModel(new SpinnerNumberModel(50, 10, null, 1));
@@ -329,11 +337,67 @@ public class MainWindow extends JFrame {
                 sNumSellers.addChangeListener(e -> sNumSellersStateChanged(e));
                 panel2.add(sNumSellers, new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(0, 0, 0, 0), 0, 0));
+                    new Insets(0, 0, 5, 0), 0, 0));
+
+                //---- label7 ----
+                label7.setText("Avg Sale Price: ");
+                label7.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
+                panel2.add(label7, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
+                    new Insets(0, 0, 5, 5), 0, 0));
+
+                //---- lASP ----
+                lASP.setText("0");
+                lASP.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
+                panel2.add(lASP, new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
+                    new Insets(0, 0, 5, 0), 0, 0));
+
+                //---- label8 ----
+                label8.setText("% Start Money Used: ");
+                label8.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
+                panel2.add(label8, new GridBagConstraints(0, 6, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
+                    new Insets(0, 0, 5, 5), 0, 0));
+
+                //---- lpSMU ----
+                lpSMU.setText("0");
+                lpSMU.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
+                panel2.add(lpSMU, new GridBagConstraints(1, 6, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
+                    new Insets(0, 0, 5, 0), 0, 0));
+
+                //---- label10 ----
+                label10.setText("Num Sold out: ");
+                label10.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
+                panel2.add(label10, new GridBagConstraints(0, 7, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
+                    new Insets(0, 0, 5, 5), 0, 0));
+
+                //---- lNumSoldOut ----
+                lNumSoldOut.setText("0");
+                lNumSoldOut.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
+                panel2.add(lNumSoldOut, new GridBagConstraints(1, 7, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
+                    new Insets(0, 0, 5, 0), 0, 0));
+
+                //---- label11 ----
+                label11.setText("Num Satisfied: ");
+                label11.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
+                panel2.add(label11, new GridBagConstraints(0, 8, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
+                    new Insets(0, 0, 5, 5), 0, 0));
+
+                //---- lNumSatisfied ----
+                lNumSatisfied.setText("0");
+                lNumSatisfied.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
+                panel2.add(lNumSatisfied, new GridBagConstraints(1, 8, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
+                    new Insets(0, 0, 5, 0), 0, 0));
             }
             panel1.add(panel2, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(0, 0, 0, 5), 0, 0));
+                new Insets(4, 4, 4, 9), 0, 0));
 
             //======== panel3 ========
             {
@@ -399,7 +463,7 @@ public class MainWindow extends JFrame {
             }
             panel1.add(panel3, new GridBagConstraints(1, 0, 1, 1, 3.0, 3.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(0, 0, 0, 0), 0, 0));
+                new Insets(4, 4, 4, 4), 0, 0));
         }
         contentPane.add(panel1, new GridBagConstraints(0, 1, 1, 1, 1.0, 9.0,
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
@@ -464,6 +528,13 @@ public class MainWindow extends JFrame {
         chart6.setyLabel("Income");
         chart6.addSeries("Avg Income");
 
+        chart7.setTitle("Budget");
+        chart7.setxLabel("Day");
+        chart7.setyLabel("Budget");
+        chart7.addSeries("Max Budget");
+        chart7.addSeries("Min Budget");
+        chart7.addSeries("Avg Budget");
+
 
     }
 
@@ -481,6 +552,9 @@ public class MainWindow extends JFrame {
             chart4.addData("Avg Trade Price", day, Main.currentABM.supervisor.avgTradePriceHistory.getLast());
             chart5.addData("Avg Spent", day, Main.currentABM.supervisor.avgSpentHistory.getLast());
             chart6.addData("Avg Income", day, Main.currentABM.supervisor.avgIncomeHistory.getLast());
+            chart7.addData("Max Budget", day, Main.currentABM.supervisor.maxBudgetHistory.getLast());
+            chart7.addData("Min Budget", day, Main.currentABM.supervisor.minBudgetHistory.getLast());
+            chart7.addData("Avg Budget", day, Main.currentABM.supervisor.avgBudgetHistory.getLast());
 
             resetCharts();
         }catch (Exception _){
@@ -520,6 +594,14 @@ public class MainWindow extends JFrame {
     private JSpinner sNumBuyers;
     private JLabel label6;
     private JSpinner sNumSellers;
+    private JLabel label7;
+    public JLabel lASP;
+    private JLabel label8;
+    public JLabel lpSMU;
+    private JLabel label10;
+    public JLabel lNumSoldOut;
+    private JLabel label11;
+    public JLabel lNumSatisfied;
     private JPanel panel3;
     private LineChart chart1;
     private LineChart chart2;

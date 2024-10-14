@@ -1,6 +1,5 @@
 package com.example.model.agents;
 
-import com.example.model.abm.ConstantParameters;
 import com.example.model.utils.Enums;
 import com.example.model.utils.Parameters;
 
@@ -8,6 +7,7 @@ import java.util.Random;
 
 public class Buyer {
     public int id;
+    public double startBudget;
     public double budget;
     public int demand;
     public double expectation;
@@ -17,7 +17,8 @@ public class Buyer {
 
     public Buyer(int id) {
         this.id = id;
-        this.budget = Parameters.startingBudget / 2 + (int) (Math.random() * (Parameters.startingBudget / 2));
+        this.startBudget = Parameters.startingBudget / 2 + (int) (Math.random() * (Parameters.startingBudget / 2));
+        this.budget = this.startBudget;
         this.demand = 1 + (int) (Math.random() * Parameters.defaultDemand);
         this.expectation = 1 + (int) (Math.random() * Parameters.startExpectation);
 
@@ -93,7 +94,7 @@ public class Buyer {
                     case 0 -> {
                         this.strategy = Enums.BuyerStrategy.NORMAL;
                         addonRate = Parameters.expectationAddonRate * 2.5;
-                        reductionRate = Parameters.expectationReductionRate * 2.5;
+                        reductionRate = Parameters.expectationReductionRate * 2.0;
                     }
                     case 1 -> {
                         this.strategy = Enums.BuyerStrategy.AGGRESSIVE;
@@ -102,8 +103,8 @@ public class Buyer {
                     }
                     case 2 -> {
                         this.strategy = Enums.BuyerStrategy.RANDOM;
-                        addonRate = Parameters.expectationAddonRate;
-                        reductionRate = Parameters.expectationReductionRate;
+                        addonRate = Parameters.expectationAddonRate * 2.5;
+                        reductionRate = Parameters.expectationReductionRate * 2.0;
                     }
                 }
             }

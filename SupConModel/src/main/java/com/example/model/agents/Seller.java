@@ -99,7 +99,7 @@ public class Seller {
                 switch (tag){
                     case 0 -> {
                         this.strategy = Enums.SellerStrategy.NORMAL;
-                        addonRate = Parameters.priceAddonRate * 2.5;
+                        addonRate = Parameters.priceAddonRate * 2.0;
                         reductionRate = Parameters.priceReductionRate * 2.5;
                     }
                     case 1 -> {
@@ -109,7 +109,7 @@ public class Seller {
                     }
                     case 2 -> {
                         this.strategy = Enums.SellerStrategy.RANDOM;
-                        addonRate = Parameters.priceAddonRate * 2.5;
+                        addonRate = Parameters.priceAddonRate * 2.0;
                         reductionRate = Parameters.priceReductionRate * 2.5;
                     }
                 }

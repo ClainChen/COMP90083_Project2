@@ -24,8 +24,6 @@ public class ABM {
         int delay = getSpeed(Main.speed);
         timer = new Timer(delay, _ -> {
             go_once();
-            Main.mainWindow.updateCharts(day);
-            day += 1;
         });
     }
 
@@ -36,6 +34,10 @@ public class ABM {
         timer.stop();
 
         Main.mainWindow.lDay.setText("Day 0");
+        Main.mainWindow.lASP.setText(String.format("%.2f", 0.0));
+        Main.mainWindow.lpSMU.setText(String.format("%.2f", 0.0));
+        Main.mainWindow.lNumSoldOut.setText(String.format("%d", 0));
+        Main.mainWindow.lNumSatisfied.setText(String.format("%d", 0));
     }
 
     /**
@@ -68,6 +70,13 @@ public class ABM {
 //        System.out.println("Day " + day);
         updateSupervisor();
         Main.mainWindow.lDay.setText("Day " + day);
+        Main.mainWindow.lASP.setText(String.format("%.2f", sellerManager.getAvgTradePrice()));
+        Main.mainWindow.lpSMU.setText(String.format("%.2f", buyerManager.getPercentSpent() * 100));
+        Main.mainWindow.lNumSoldOut.setText(String.format("%d", sellerManager.getNumSoldOut()));
+        Main.mainWindow.lNumSatisfied.setText(String.format("%d", buyerManager.getNumSatisfied()));
+
+        Main.mainWindow.updateCharts(day);
+        day += 1;
     }
 
     private void checkEnd() {
@@ -137,6 +146,9 @@ public class ABM {
         supervisor.totalInventoryHistory.add(sellerManager.getInventory());
         supervisor.totalBoughtHistory.add(sellerManager.getBought());
         supervisor.totalDemandHistory.add(buyerManager.getDemand());
+        supervisor.maxBudgetHistory.add(buyerManager.getMaxBudget());
+        supervisor.minBudgetHistory.add(buyerManager.getMinBudget());
+        supervisor.avgBudgetHistory.add(buyerManager.getAvgBudget());
     }
 
 }

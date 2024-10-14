@@ -53,18 +53,43 @@ public class BuyerManager {
     public double getAvgSpent(){
         double sum = 0;
         for (Buyer b : buyers) {
-            sum += Parameters.startingBudget - b.budget;
+            sum += b.startBudget - b.budget;
         }
         return sum / numBuyers;
+    }
+
+    public double getPercentSpent(){
+        double sum = 0;
+        double totalSpent = 0;
+        for (Buyer b : buyers) {
+            sum += b.startBudget;
+            totalSpent += b.startBudget - b.budget;
+        }
+        return totalSpent / sum;
     }
 
     public double getMaxBudget(){
         double maxBudget = 0;
         for (Buyer b : buyers) {
-            double inv = b.budget;
-            maxBudget = Math.max(maxBudget, inv);
+            maxBudget = Math.max(maxBudget, b.budget);
         }
         return maxBudget;
+    }
+
+    public double getMinBudget(){
+        double minBudget = Double.MAX_VALUE;
+        for (Buyer b : buyers) {
+            minBudget = Math.min(minBudget, b.budget);
+        }
+        return minBudget;
+    }
+
+    public double getAvgBudget(){
+        double sumBudget = 0;
+        for (Buyer b : buyers) {
+            sumBudget += b.budget;
+        }
+        return sumBudget / numBuyers;
     }
 
     public double getMaxDemand(){
@@ -87,6 +112,16 @@ public class BuyerManager {
         for (Buyer b : buyers) {
             b.setStrategy(Parameters.buyerStrategy);
         }
+    }
+
+    public int getNumSatisfied(){
+        int satisfied = 0;
+        for (Buyer b : buyers) {
+            if (b.demand == 0) {
+                satisfied++;
+            }
+        }
+        return satisfied;
     }
 
 

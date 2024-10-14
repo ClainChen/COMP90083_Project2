@@ -18,7 +18,17 @@ public class SellerManager {
     }
 
     public Seller getRandomSeller(){
-        return sellers.get((int)(Math.random() * numSeller));
+        ArrayList<Seller> availableSellers = new ArrayList<>();
+        for (Seller seller: sellers) {
+            if (seller.inventory > 0){
+                availableSellers.add(seller);
+            }
+        }
+        if (availableSellers.isEmpty()) {
+            return null;
+        }
+        int size = availableSellers.size();
+        return availableSellers.get((int)(Math.random() * size));
     }
 
     public double getMaxPrice(){
@@ -106,6 +116,16 @@ public class SellerManager {
         for (Seller seller: sellers) {
             seller.setStrategy(Parameters.sellerStrategy);
         }
+    }
+
+    public int getNumSoldOut(){
+        int numSoldOut = 0;
+        for (Seller seller: sellers) {
+            if (seller.inventory == 0){
+                numSoldOut++;
+            }
+        }
+        return numSoldOut;
     }
 
 }
