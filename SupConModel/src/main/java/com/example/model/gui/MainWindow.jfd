@@ -1,0 +1,188 @@
+JFDML JFormDesigner: "8.2.4.0.393" Java: "17.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.GridBagLayout ) {
+			"$columnSpecs": "0"
+			"$rowSpecs": "0, 0"
+			"$hGap": 5
+			"$vGap": 5
+			"$alignLeft": true
+			"$alignTop": true
+		} ) {
+			name: "this"
+			"minimumSize": new java.awt.Dimension( 1280, 960 )
+			"maximumSize": new java.awt.Dimension( 1600, 1200 )
+			"defaultCloseOperation": 3
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+				"$columnSpecs": "0, 0, 0"
+				"$rowSpecs": "0, 0, 0"
+				"$hGap": 5
+				"$vGap": 5
+				"$alignLeft": true
+				"$alignTop": true
+			} ) {
+				name: "panel4"
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "bSetup"
+					"text": "setup"
+					"font": &Font0 new java.awt.Font( "JetBrains Mono", 0, 12 )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bSetup", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"insets": new java.awt.Insets( 2, 2, 2, 2 )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "bGoOnce"
+					"text": "go-once"
+					"font": #Font0
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bGoOnce", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 1
+					"insets": new java.awt.Insets( 2, 2, 2, 2 )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "bGo"
+					"text": "go"
+					"font": #Font0
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bGo", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 2
+					"insets": new java.awt.Insets( 2, 2, 2, 2 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lDay"
+					"text": "Day: 0"
+					auxiliary() {
+						"JavaCodeGenerator.variableModifiers": 1
+					}
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridy": 1
+				} )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"weighty": 1.0
+				"weightx": 1.0
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+				"$columnSpecs": "0, 0"
+				"$rowSpecs": "0"
+				"$hGap": 5
+				"$vGap": 5
+				"$alignLeft": true
+				"$alignTop": true
+			} ) {
+				name: "panel1"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+					"$columnSpecs": "0, 0"
+					"$rowSpecs": "0, 0, 0"
+					"$hGap": 5
+					"$vGap": 5
+					"$alignLeft": true
+					"$alignTop": true
+				} ) {
+					name: "panel2"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"weightx": 1.0
+					"weighty": 1.0
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+					"$columnSpecs": "0, 0, 0"
+					"$rowSpecs": "0, 0, 0, 0"
+					"$hGap": 5
+					"$vGap": 5
+					"$alignLeft": true
+					"$alignTop": true
+				} ) {
+					name: "panel3"
+					add( new FormComponent( "com.example.model.customChart.LineChart" ) {
+						name: "chart1"
+						"preferredSize": new java.awt.Dimension( 420, 260 )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"weightx": 1.0
+						"weighty": 1.0
+					} )
+					add( new FormComponent( "com.example.model.customChart.LineChart" ) {
+						name: "chart2"
+						"preferredSize": new java.awt.Dimension( 420, 260 )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"weightx": 1.0
+						"weighty": 1.0
+						"gridx": 1
+					} )
+					add( new FormComponent( "com.example.model.customChart.LineChart" ) {
+						name: "chart3"
+						"preferredSize": new java.awt.Dimension( 420, 260 )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"weightx": 1.0
+						"weighty": 1.0
+						"gridx": 2
+					} )
+					add( new FormComponent( "com.example.model.customChart.LineChart" ) {
+						name: "chart4"
+						"preferredSize": new java.awt.Dimension( 420, 260 )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"weightx": 1.0
+						"weighty": 1.0
+						"gridy": 1
+					} )
+					add( new FormComponent( "com.example.model.customChart.LineChart" ) {
+						name: "chart5"
+						"preferredSize": new java.awt.Dimension( 420, 260 )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"weightx": 1.0
+						"weighty": 1.0
+						"gridy": 1
+						"gridx": 1
+					} )
+					add( new FormComponent( "com.example.model.customChart.LineChart" ) {
+						name: "chart6"
+						"preferredSize": new java.awt.Dimension( 420, 260 )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"weightx": 1.0
+						"weighty": 1.0
+						"gridy": 1
+						"gridx": 2
+					} )
+					add( new FormComponent( "com.example.model.customChart.LineChart" ) {
+						name: "chart7"
+						"preferredSize": new java.awt.Dimension( 420, 260 )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"weightx": 1.0
+						"weighty": 1.0
+						"gridy": 2
+					} )
+					add( new FormComponent( "com.example.model.customChart.LineChart" ) {
+						name: "chart8"
+						"preferredSize": new java.awt.Dimension( 420, 260 )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"weightx": 1.0
+						"weighty": 1.0
+						"gridy": 2
+						"gridx": 1
+					} )
+					add( new FormComponent( "com.example.model.customChart.LineChart" ) {
+						name: "chart9"
+						"preferredSize": new java.awt.Dimension( 420, 260 )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"weightx": 1.0
+						"weighty": 1.0
+						"gridy": 2
+						"gridx": 2
+					} )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 1
+					"weightx": 3.0
+					"weighty": 3.0
+				} )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridy": 1
+				"insets": new java.awt.Insets( 2, 2, 2, 2 )
+				"weightx": 1.0
+				"weighty": 9.0
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 1170, 780 )
+		} )
+	}
+}
