@@ -1,6 +1,6 @@
 package com.example.model.agents;
 
-import com.example.model.abm.ConstantParameters;
+import com.example.model.utils.Parameters;
 import com.example.model.utils.TradesInADay;
 
 import java.util.ArrayList;
@@ -9,11 +9,11 @@ public class SellerManager {
     public ArrayList<Seller> sellers;
     public int numSeller;
 
-    public SellerManager(ConstantParameters parameters) {
+    public SellerManager() {
         sellers = new ArrayList<>();
-        numSeller = parameters.numSellers;
+        numSeller = Parameters.numSellers;
         for (int i = 0; i < numSeller; i++) {
-            sellers.add(new Seller(i, parameters));
+            sellers.add(new Seller(i));
         }
     }
 
@@ -38,7 +38,7 @@ public class SellerManager {
                 minPrice = Math.min(minPrice, seller.price);
             }
         }
-        return minPrice;
+        return minPrice == Double.MAX_VALUE ? 0 : minPrice;
     }
 
     public double getAvgPrice(){
@@ -50,7 +50,7 @@ public class SellerManager {
                 numSeller++;
             }
         }
-        return sum / numSeller;
+        return sum / Math.max(1, numSeller);
     }
 
     public double getAvgTradePrice(){
@@ -100,6 +100,12 @@ public class SellerManager {
             bought += seller.startInventory - seller.inventory;
         }
         return bought;
+    }
+
+    public void updateStrategies(){
+        for (Seller seller: sellers) {
+            seller.setStrategy(Parameters.sellerStrategy);
+        }
     }
 
 }

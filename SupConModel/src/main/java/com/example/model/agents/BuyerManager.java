@@ -1,6 +1,7 @@
 package com.example.model.agents;
 
 import com.example.model.abm.ConstantParameters;
+import com.example.model.utils.Parameters;
 
 import java.util.ArrayList;
 
@@ -8,11 +9,11 @@ public class BuyerManager {
     public ArrayList<Buyer> buyers;
     public int numBuyers;
 
-    public BuyerManager(ConstantParameters parameters) {
+    public BuyerManager() {
         buyers = new ArrayList<>();
-        numBuyers = parameters.numBuyers;
+        numBuyers = Parameters.numBuyers;
         for (int i = 0; i < numBuyers; i++) {
-            Buyer b = new Buyer(i, parameters);
+            Buyer b = new Buyer(i);
             buyers.add(b);
         }
     }
@@ -49,10 +50,10 @@ public class BuyerManager {
         return sumExp / numBuyers;
     }
 
-    public double getAvgSpent(ConstantParameters parameters){
+    public double getAvgSpent(){
         double sum = 0;
         for (Buyer b : buyers) {
-            sum += parameters.startingBudget - b.budget;
+            sum += Parameters.startingBudget - b.budget;
         }
         return sum / numBuyers;
     }
@@ -80,6 +81,12 @@ public class BuyerManager {
             demand += b.demand;
         }
         return demand;
+    }
+
+    public void updateStrategies(){
+        for (Buyer b : buyers) {
+            b.setStrategy(Parameters.buyerStrategy);
+        }
     }
 
 

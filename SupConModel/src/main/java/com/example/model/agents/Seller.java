@@ -2,6 +2,7 @@ package com.example.model.agents;
 
 import com.example.model.abm.ConstantParameters;
 import com.example.model.utils.Enums;
+import com.example.model.utils.Parameters;
 import com.example.model.utils.TradesInADay;
 
 import java.util.ArrayList;
@@ -20,45 +21,16 @@ public class Seller {
 
     public ArrayList<TradesInADay> trade_history;
 
-    public Seller(int id, ConstantParameters parameters) {
+    public Seller(int id) {
         this.id = id;
-        this.price = (parameters.startPrice / 2) + (Math.random() * parameters.startPrice / 2);
-        this.startInventory = 1 + (int) (Math.random() * parameters.defaultInventory);
+        this.price = (Parameters.startPrice / 2) + (Math.random() * Parameters.startPrice / 2);
+        this.startInventory = 1 + (int) (Math.random() * Parameters.defaultInventory);
         this.inventory = startInventory;
-        this.strategy = parameters.sellerStrategy;
+        this.strategy = Parameters.sellerStrategy;
         this.potential_buyers = 0;
         trade_history = new ArrayList<>();
 
-        switch (parameters.sellerStrategy){
-            case NORMAL, RANDOM -> {
-                addonRate = parameters.priceAddonRate * 2.0;
-                reductionRate = parameters.priceReductionRate * 2.5;
-            }
-            case AGGRESSIVE -> {
-                addonRate = parameters.priceAddonRate * 1.5;
-                reductionRate = parameters.priceReductionRate * 7.5;
-            }
-            case MIX_UP -> {
-                int tag = (int) (Math.random() * 3);
-                switch (tag){
-                    case 0 -> {
-                        this.strategy = Enums.SellerStrategy.NORMAL;
-                        addonRate = parameters.priceAddonRate * 2.5;
-                        reductionRate = parameters.priceReductionRate * 2.5;
-                    }
-                    case 1 -> {
-                        this.strategy = Enums.SellerStrategy.AGGRESSIVE;
-                        addonRate = parameters.priceAddonRate * 2.5;
-                        reductionRate = parameters.priceReductionRate * 7.5;
-                    }
-                    case 2 -> {
-                        this.strategy = Enums.SellerStrategy.RANDOM;
-                        addonRate = parameters.priceAddonRate * 2.5;
-                        reductionRate = parameters.priceReductionRate * 2.5;
-                    }
-                }
-            }
-        }
+        setStrategy(strategy);
     }
 
     public void decreasePrice() {
@@ -109,6 +81,40 @@ public class Seller {
         }
 //        System.out.println("New price: " + newPrice);
         price = newPrice;
+    }
+
+    public void setStrategy(Enums.SellerStrategy strategy){
+        this.strategy = strategy;
+        switch (strategy){
+            case NORMAL, RANDOM -> {
+                addonRate = Parameters.priceAddonRate * 2.0;
+                reductionRate = Parameters.priceReductionRate * 2.5;
+            }
+            case AGGRESSIVE -> {
+                addonRate = Parameters.priceAddonRate * 1.5;
+                reductionRate = Parameters.priceReductionRate * 7.5;
+            }
+            case MIX_UP -> {
+                int tag = (int) (Math.random() * 3);
+                switch (tag){
+                    case 0 -> {
+                        this.strategy = Enums.SellerStrategy.NORMAL;
+                        addonRate = Parameters.priceAddonRate * 2.5;
+                        reductionRate = Parameters.priceReductionRate * 2.5;
+                    }
+                    case 1 -> {
+                        this.strategy = Enums.SellerStrategy.AGGRESSIVE;
+                        addonRate = Parameters.priceAddonRate * 1.5;
+                        reductionRate = Parameters.priceReductionRate * 7.5;
+                    }
+                    case 2 -> {
+                        this.strategy = Enums.SellerStrategy.RANDOM;
+                        addonRate = Parameters.priceAddonRate * 2.5;
+                        reductionRate = Parameters.priceReductionRate * 2.5;
+                    }
+                }
+            }
+        }
     }
 
 

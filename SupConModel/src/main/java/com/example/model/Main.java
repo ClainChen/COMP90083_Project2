@@ -1,7 +1,6 @@
 package com.example.model;
 
 import com.example.model.abm.ABM;
-import com.example.model.abm.ABMCollection;
 import com.example.model.gui.MainWindow;
 
 import java.awt.*;
@@ -9,9 +8,9 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class Main {
-    public static ABMCollection abmCollection;
     public static ABM currentABM;
     public static MainWindow mainWindow;
+    public static int speed;
 
     // This method is called when the program is launched
     // This is the main method of the program
@@ -27,18 +26,19 @@ public class Main {
         } catch (FontFormatException e) {
             throw new RuntimeException(e);
         }
-
-        abmCollection = new ABMCollection();
+        speed = 4;
 
         mainWindow = new MainWindow();
         mainWindow.setVisible(true);
     }
 
     public static void setup(){
-        ABM abm = new ABM();
-        abm.setup();
-        currentABM = abm;
-        abmCollection.abms.add(abm);
+        if (currentABM != null) {
+            currentABM.stop();
+        }
+        currentABM = new ABM();
+        currentABM.setup();
+
     }
 
     public static void go_once(){

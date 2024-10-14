@@ -10,7 +10,6 @@ import com.example.model.utils.TradesInADay;
 import javax.swing.*;
 
 public class ABM {
-    public ConstantParameters parameters;
     public Supervisor supervisor;
 
     public BuyerManager buyerManager;
@@ -20,10 +19,10 @@ public class ABM {
 
     public int day;
     public ABM(){
-        parameters = new ConstantParameters();
         supervisor = new Supervisor();
         day = 0;
-        timer = new Timer(16, _ -> {
+        int delay = getSpeed(Main.speed);
+        timer = new Timer(delay, _ -> {
             go_once();
             Main.mainWindow.updateCharts(day);
             day += 1;
@@ -32,8 +31,8 @@ public class ABM {
 
 
     public void setup(){
-        buyerManager = new BuyerManager(parameters);
-        sellerManager = new SellerManager(parameters);
+        buyerManager = new BuyerManager();
+        sellerManager = new SellerManager();
         timer.stop();
 
         Main.mainWindow.lDay.setText("Day 0");
@@ -103,7 +102,25 @@ public class ABM {
         }
     }
 
-    public void changeSpeed(int delay){
+    private int getSpeed(int speedID){
+        assert Main.speed >= 1 && Main.speed <= 5;
+        int delay = switch (Main.speed) {
+            case 1 -> 1000;
+            case 2 -> 125;
+            case 3 -> 31;
+            case 4 -> 16;
+            case 5 -> 8;
+            default -> throw new IllegalStateException("Unexpected value: " + Main.speed);
+        };
+        return delay;
+    }
+
+    public void stop(){
+        timer.stop();
+    }
+
+    public void updateSpeed(int speedID){
+        int delay = getSpeed(speedID);
         timer.setDelay(delay);
     }
 
@@ -115,7 +132,7 @@ public class ABM {
         supervisor.minExpectationHistory.add(buyerManager.getMinExpectation());
         supervisor.avgExpectationHistory.add(buyerManager.getAvgExpectation());
         supervisor.avgTradePriceHistory.add(sellerManager.getAvgTradePrice());
-        supervisor.avgSpentHistory.add(buyerManager.getAvgSpent(parameters));
+        supervisor.avgSpentHistory.add(buyerManager.getAvgSpent());
         supervisor.avgIncomeHistory.add(sellerManager.getAvgIncome());
         supervisor.totalInventoryHistory.add(sellerManager.getInventory());
         supervisor.totalBoughtHistory.add(sellerManager.getBought());
