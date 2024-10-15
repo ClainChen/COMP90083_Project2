@@ -290,7 +290,6 @@ new FormModel {
 						"hAlign": 0
 					} )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-					"weightx": 1.0
 					"weighty": 1.0
 					"insets": new java.awt.Insets( 4, 4, 4, 4 )
 				} )

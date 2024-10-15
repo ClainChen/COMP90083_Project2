@@ -395,7 +395,7 @@ public class MainWindow extends JFrame {
                     GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                     new Insets(0, 0, 5, 0), 0, 0));
             }
-            panel1.add(panel2, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
+            panel1.add(panel2, new GridBagConstraints(0, 0, 1, 1, 0.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(4, 4, 4, 9), 0, 0));
 
