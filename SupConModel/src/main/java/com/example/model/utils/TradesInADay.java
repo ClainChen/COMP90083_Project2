@@ -4,12 +4,18 @@ import java.util.ArrayList;
 
 public class TradesInADay {
     public int day;
-    public double price;
-    public ArrayList<Integer> buyerIDs;
+    public ArrayList<Double> dealPrices;
 
-    public TradesInADay(int day, double price) {
+    public TradesInADay(int day) {
         this.day = day;
-        this.price = price;
-        this.buyerIDs = new ArrayList<>();
+        this.dealPrices = new ArrayList<>();
+    }
+
+    public double dealIncomeForADay(){
+        double total = 0;
+        for (Double price : dealPrices) {
+            total += price;
+        }
+        return total;
     }
 }

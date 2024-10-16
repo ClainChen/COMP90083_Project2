@@ -35,6 +35,9 @@ public class BuyerManager {
                 minExp = Math.min(minExp, b.expectation);
             }
         }
+        if (minExp == Double.MAX_VALUE) {
+            return 0;
+        }
         return minExp;
     }
 
@@ -47,7 +50,7 @@ public class BuyerManager {
                 numBuyers++;
             }
         }
-        return sumExp / numBuyers;
+        return sumExp / Math.max(1, numBuyers);
     }
 
     public double getAvgSpent(){
@@ -71,7 +74,9 @@ public class BuyerManager {
     public double getMaxBudget(){
         double maxBudget = 0;
         for (Buyer b : buyers) {
-            maxBudget = Math.max(maxBudget, b.budget);
+            if (b.budget > 0 && b.demand > 0) {
+                maxBudget = Math.max(maxBudget, b.budget);
+            }
         }
         return maxBudget;
     }
@@ -79,17 +84,26 @@ public class BuyerManager {
     public double getMinBudget(){
         double minBudget = Double.MAX_VALUE;
         for (Buyer b : buyers) {
-            minBudget = Math.min(minBudget, b.budget);
+            if (b.budget > 0 && b.demand > 0) {
+                minBudget = Math.min(minBudget, b.budget);
+            }
+        }
+        if (minBudget == Double.MAX_VALUE) {
+            return 0;
         }
         return minBudget;
     }
 
     public double getAvgBudget(){
         double sumBudget = 0;
+        int numBuyers = 0;
         for (Buyer b : buyers) {
-            sumBudget += b.budget;
+            if (b.budget > 0 && b.demand > 0) {
+                sumBudget += b.budget;
+                numBuyers++;
+            }
         }
-        return sumBudget / numBuyers;
+        return sumBudget / Math.max(1, numBuyers);
     }
 
     public double getMaxDemand(){

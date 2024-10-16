@@ -13,6 +13,8 @@ import javax.swing.event.*;
 
 import com.example.model.Main;
 import com.example.model.customChart.LineChart;
+import com.example.model.experiment.Experiment;
+import com.example.model.experiment.ExperimentSpace;
 import com.example.model.utils.Enums;
 import com.example.model.utils.Parameters;
 import com.example.model.utils.Tools;
@@ -26,8 +28,7 @@ public class MainWindow extends JFrame {
         initComponents();
     }
 
-    private void bSetup(ActionEvent e) {
-        // TODO add your code here
+    public void bSetup() {
         Main.setup();
         for (LineChart lc: charts){
             lc.resetData();
@@ -38,19 +39,17 @@ public class MainWindow extends JFrame {
     }
 
     private void bGoOnce(ActionEvent e) {
-        // TODO add your code here
         Main.go_once();
     }
 
-    private void bGo(ActionEvent e) {
-        // TODO add your code here
+    public void bGo() {
         Main.go();
     }
 
     private void sliderSpeedStateChanged(ChangeEvent e) {
         Main.speed = sliderSpeed.getValue();
         if (Main.currentABM != null){
-            Main.currentABM.updateSpeed(Main.speed);
+            Main.currentABM.updateSpeed();
         }
         switch (Main.speed){
             case 1 -> lSpeed.setText("Speed: Very Slow");
@@ -99,6 +98,19 @@ public class MainWindow extends JFrame {
         Parameters.numSellers = (int) sNumSellers.getValue();
     }
 
+    private void toggleJudge(ActionEvent e) {
+        Parameters.isJudgement = toggleJudge.isSelected();
+    }
+
+    private void bStartExp(ActionEvent e) {
+        Main.experimentSpace = new ExperimentSpace();
+        Main.experimentSpace.executeExperiment();
+        bStartExp.setEnabled(false);
+    }
+
+    private void lOutput(ActionEvent e) {
+        Main.experimentSpace.outputCSV();
+    }
 
 
     private void initComponents() {
@@ -109,15 +121,15 @@ public class MainWindow extends JFrame {
         }
 
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        menuBar1 = new JMenuBar();
-        menu1 = new JMenu();
-        menuItem1 = new JMenuItem();
         panel4 = new JPanel();
         bSetup = new JButton();
         bGoOnce = new JButton();
         bGo = new JButton();
+        bStartExp = new JButton();
         lDay = new JLabel();
         lSpeed = new JLabel();
+        toggleJudge = new JToggleButton();
+        lOutput = new JButton();
         sliderSpeed = new JSlider();
         panel1 = new JPanel();
         panel2 = new JPanel();
@@ -139,6 +151,8 @@ public class MainWindow extends JFrame {
         lNumSoldOut = new JLabel();
         label11 = new JLabel();
         lNumSatisfied = new JLabel();
+        label1 = new JLabel();
+        lJudgeDeals = new JLabel();
         panel3 = new JPanel();
         chart1 = new LineChart();
         chart2 = new LineChart();
@@ -151,7 +165,7 @@ public class MainWindow extends JFrame {
         chart9 = new LineChart();
 
         //======== this ========
-        setMinimumSize(new Dimension(1280, 960));
+        setMinimumSize(new Dimension(14, 37));
         setMaximumSize(new Dimension(1600, 1200));
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         var contentPane = getContentPane();
@@ -161,33 +175,18 @@ public class MainWindow extends JFrame {
         ((GridBagLayout)contentPane.getLayout()).columnWeights = new double[] {0.0, 1.0E-4};
         ((GridBagLayout)contentPane.getLayout()).rowWeights = new double[] {0.0, 0.0, 1.0E-4};
 
-        //======== menuBar1 ========
-        {
-
-            //======== menu1 ========
-            {
-                menu1.setText("ABM History");
-
-                //---- menuItem1 ----
-                menuItem1.setText("Select Simed ABM");
-                menu1.add(menuItem1);
-            }
-            menuBar1.add(menu1);
-        }
-        setJMenuBar(menuBar1);
-
         //======== panel4 ========
         {
             panel4.setLayout(new GridBagLayout());
-            ((GridBagLayout)panel4.getLayout()).columnWidths = new int[] {0, 141, 0, 0};
+            ((GridBagLayout)panel4.getLayout()).columnWidths = new int[] {0, 141, 0, 0, 0};
             ((GridBagLayout)panel4.getLayout()).rowHeights = new int[] {0, 0, 0, 0};
-            ((GridBagLayout)panel4.getLayout()).columnWeights = new double[] {0.0, 0.0, 0.0, 1.0E-4};
+            ((GridBagLayout)panel4.getLayout()).columnWeights = new double[] {0.0, 0.0, 0.0, 0.0, 1.0E-4};
             ((GridBagLayout)panel4.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 1.0E-4};
 
             //---- bSetup ----
             bSetup.setText("setup");
             bSetup.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-            bSetup.addActionListener(e -> bSetup(e));
+            bSetup.addActionListener(e -> bSetup());
             panel4.add(bSetup, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(2, 2, 7, 7), 0, 0));
@@ -203,8 +202,16 @@ public class MainWindow extends JFrame {
             //---- bGo ----
             bGo.setText("go");
             bGo.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-            bGo.addActionListener(e -> bGo(e));
+            bGo.addActionListener(e -> bGo());
             panel4.add(bGo, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(2, 2, 7, 7), 0, 0));
+
+            //---- bStartExp ----
+            bStartExp.setText("Start Experiment");
+            bStartExp.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
+            bStartExp.addActionListener(e -> bStartExp(e));
+            panel4.add(bStartExp, new GridBagConstraints(3, 0, 1, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(2, 2, 7, 2), 0, 0));
 
@@ -222,6 +229,22 @@ public class MainWindow extends JFrame {
                 GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                 new Insets(0, 0, 5, 5), 0, 0));
 
+            //---- toggleJudge ----
+            toggleJudge.setText("Able to Judge");
+            toggleJudge.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
+            toggleJudge.addActionListener(e -> toggleJudge(e));
+            panel4.add(toggleJudge, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
+                new Insets(0, 0, 5, 5), 0, 0));
+
+            //---- lOutput ----
+            lOutput.setText("Output Experiment");
+            lOutput.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
+            lOutput.addActionListener(e -> lOutput(e));
+            panel4.add(lOutput, new GridBagConstraints(3, 1, 1, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(0, 0, 5, 0), 0, 0));
+
             //---- sliderSpeed ----
             sliderSpeed.setMaximum(5);
             sliderSpeed.setMinimum(1);
@@ -232,7 +255,7 @@ public class MainWindow extends JFrame {
             sliderSpeed.addChangeListener(e -> sliderSpeedStateChanged(e));
             panel4.add(sliderSpeed, new GridBagConstraints(0, 2, 3, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(0, 0, 0, 0), 0, 0));
+                new Insets(0, 0, 0, 5), 0, 0));
         }
         contentPane.add(panel4, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
@@ -394,6 +417,20 @@ public class MainWindow extends JFrame {
                 panel2.add(lNumSatisfied, new GridBagConstraints(1, 8, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                     new Insets(0, 0, 5, 0), 0, 0));
+
+                //---- label1 ----
+                label1.setText("Judge Deals: ");
+                label1.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
+                panel2.add(label1, new GridBagConstraints(0, 9, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
+                    new Insets(0, 0, 0, 5), 0, 0));
+
+                //---- lJudgeDeals ----
+                lJudgeDeals.setText("0");
+                lJudgeDeals.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
+                panel2.add(lJudgeDeals, new GridBagConstraints(1, 9, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
+                    new Insets(0, 0, 0, 0), 0, 0));
             }
             panel1.add(panel2, new GridBagConstraints(0, 0, 1, 1, 0.0, 1.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
@@ -558,7 +595,7 @@ public class MainWindow extends JFrame {
 
             resetCharts();
         }catch (Exception _){
-            System.out.println("Update Charts Error");
+
         }
 
     }
@@ -572,22 +609,22 @@ public class MainWindow extends JFrame {
     public ArrayList<LineChart> charts;
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    private JMenuBar menuBar1;
-    private JMenu menu1;
-    private JMenuItem menuItem1;
     private JPanel panel4;
     private JButton bSetup;
     private JButton bGoOnce;
     private JButton bGo;
+    public JButton bStartExp;
     public JLabel lDay;
     private JLabel lSpeed;
+    public JToggleButton toggleJudge;
+    private JButton lOutput;
     private JSlider sliderSpeed;
     private JPanel panel1;
     private JPanel panel2;
     private JLabel label2;
-    private JComboBox<String> lBuyerStrategy;
+    public JComboBox<String> lBuyerStrategy;
     private JLabel label3;
-    private JComboBox<String> lSellerStrategy;
+    public JComboBox<String> lSellerStrategy;
     private JLabel label4;
     private JSpinner sBudget;
     private JLabel label5;
@@ -602,6 +639,8 @@ public class MainWindow extends JFrame {
     public JLabel lNumSoldOut;
     private JLabel label11;
     public JLabel lNumSatisfied;
+    private JLabel label1;
+    public JLabel lJudgeDeals;
     private JPanel panel3;
     private LineChart chart1;
     private LineChart chart2;

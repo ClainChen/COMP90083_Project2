@@ -20,7 +20,7 @@ public class Buyer {
         this.startBudget = Parameters.startingBudget / 2 + (int) (Math.random() * (Parameters.startingBudget / 2));
         this.budget = this.startBudget;
         this.demand = 1 + (int) (Math.random() * Parameters.defaultDemand);
-        this.expectation = 1 + (int) (Math.random() * Parameters.startExpectation);
+        this.expectation = Parameters.startExpectation / 2 + (int) (Math.random() * Parameters.startExpectation / 2);
 
         setStrategy(Parameters.buyerStrategy);
     }

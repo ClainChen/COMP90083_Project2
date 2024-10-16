@@ -68,9 +68,9 @@ public class SellerManager {
         double numTrades = 0;
         for (Seller seller: sellers) {
             for (TradesInADay trade: seller.trade_history) {
-                int thisNumTrades = trade.buyerIDs.size();
+                int thisNumTrades = trade.dealPrices.size();
                 numTrades += thisNumTrades;
-                sum += trade.price * thisNumTrades;
+                sum += trade.dealIncomeForADay();
             }
         }
         return sum / Math.max(1, numTrades);

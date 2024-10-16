@@ -1,6 +1,5 @@
 package com.example.model.agents;
 
-import com.example.model.abm.ConstantParameters;
 import com.example.model.utils.Enums;
 import com.example.model.utils.Parameters;
 import com.example.model.utils.TradesInADay;
@@ -52,7 +51,7 @@ public class Seller {
             newPrice = 0.01;
         }
         if (newPrice == price){
-            price -= 0.01;
+            newPrice -= 0.01;
         }
 //        System.out.println("New price: " + newPrice);
         price = newPrice;
@@ -77,7 +76,7 @@ public class Seller {
             newPrice = 0.01;
         }
         if (newPrice == price){
-            price += 0.01;
+            newPrice += 0.01;
         }
 //        System.out.println("New price: " + newPrice);
         price = newPrice;
