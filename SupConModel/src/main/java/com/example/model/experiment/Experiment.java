@@ -1,10 +1,7 @@
 package com.example.model.experiment;
 
-import com.example.model.Main;
 import com.example.model.abm.ABM;
 import com.example.model.utils.Enums;
-import com.example.model.utils.Parameters;
-import com.example.model.utils.Tools;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -34,7 +31,6 @@ public class Experiment implements Runnable {
         ArrayList<String> batchCSV = batch.getAllCSVFormat();
         String prefix = "output/" + batch;
         File directory = new File(prefix);
-        System.out.println(directory.getAbsolutePath());
 
         if (!directory.exists()) {
             if (directory.mkdirs()) {
@@ -49,7 +45,7 @@ public class Experiment implements Runnable {
 
         String typeFile = prefix + "type.csv";
         outputCSV(typeFile, batchCSV.getFirst());
-        for (int i = 1; i < batch.supervisors.size(); i++) {
+        for (int i = 1; i < batch.supervisors.size() + 1; i++) {
             String path = prefix + i + ".csv";
             outputCSV(path, batchCSV.get(i));
         }
