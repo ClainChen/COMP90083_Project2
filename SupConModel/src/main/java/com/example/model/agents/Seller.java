@@ -20,14 +20,14 @@ public class Seller {
 
     public ArrayList<TradesInADay> trade_history;
 
-    public Seller(int id) {
+    public Seller(int id, Enums.SellerStrategy strategy) {
         this.id = id;
         this.price = (Parameters.startPrice / 2) + (Math.random() * Parameters.startPrice / 2);
         this.startInventory = 1 + (int) (Math.random() * Parameters.defaultInventory);
         this.inventory = startInventory;
-        this.strategy = Parameters.sellerStrategy;
         this.potential_buyers = 0;
         trade_history = new ArrayList<>();
+        this.strategy = strategy;
 
         setStrategy(strategy);
     }
@@ -86,7 +86,7 @@ public class Seller {
         this.strategy = strategy;
         switch (strategy){
             case NORMAL, RANDOM -> {
-                addonRate = Parameters.priceAddonRate * 2.0;
+                addonRate = Parameters.priceAddonRate * 5.0;
                 reductionRate = Parameters.priceReductionRate * 2.5;
             }
             case AGGRESSIVE -> {
@@ -94,7 +94,7 @@ public class Seller {
                 reductionRate = Parameters.priceReductionRate * 7.5;
             }
             case MIX_UP -> {
-                int tag = (int) (Math.random() * 3);
+                int tag = (int) (Math.random() * 2);
                 switch (tag){
                     case 0 -> {
                         this.strategy = Enums.SellerStrategy.NORMAL;

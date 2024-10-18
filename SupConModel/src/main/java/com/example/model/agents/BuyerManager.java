@@ -1,6 +1,6 @@
 package com.example.model.agents;
 
-import com.example.model.abm.ConstantParameters;
+import com.example.model.utils.Enums;
 import com.example.model.utils.Parameters;
 
 import java.util.ArrayList;
@@ -9,11 +9,11 @@ public class BuyerManager {
     public ArrayList<Buyer> buyers;
     public int numBuyers;
 
-    public BuyerManager() {
+    public BuyerManager(Enums.BuyerStrategy strategy) {
         buyers = new ArrayList<>();
         numBuyers = Parameters.numBuyers;
         for (int i = 0; i < numBuyers; i++) {
-            Buyer b = new Buyer(i);
+            Buyer b = new Buyer(i, strategy);
             buyers.add(b);
         }
     }

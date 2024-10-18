@@ -112,6 +112,28 @@ public class MainWindow extends JFrame {
         Main.experimentSpace.outputCSV();
     }
 
+    private void toggleChoose(ActionEvent e) {
+        Parameters.canChoose = toggleChoose.isSelected();
+    }
+
+    private void spinner1StateChanged(ChangeEvent e) {
+        Parameters.numChoices = (int) sNumChoices.getValue();
+    }
+
+    private void sBargainRoundStateChanged(ChangeEvent e) {
+        Parameters.bargainRound = (int) sBargainRound.getValue();
+    }
+
+    private void sBarginFactorStateChanged(ChangeEvent e) {
+        Parameters.bargainFactor = (double) sBargainFactor.getValue();
+    }
+
+    private void bStartSenseExp(ActionEvent e) {
+        Main.experimentSpace = new ExperimentSpace();
+        Main.experimentSpace.executeSensitivityExperiment();
+        bStartSenseExp.setEnabled(false);
+    }
+
 
     private void initComponents() {
         try {
@@ -126,11 +148,13 @@ public class MainWindow extends JFrame {
         bGoOnce = new JButton();
         bGo = new JButton();
         bStartExp = new JButton();
+        toggleJudge = new JToggleButton();
         lDay = new JLabel();
         lSpeed = new JLabel();
-        toggleJudge = new JToggleButton();
-        lOutput = new JButton();
+        bStartSenseExp = new JButton();
+        toggleChoose = new JToggleButton();
         sliderSpeed = new JSlider();
+        lOutput = new JButton();
         panel1 = new JPanel();
         panel2 = new JPanel();
         label2 = new JLabel();
@@ -143,6 +167,12 @@ public class MainWindow extends JFrame {
         sNumBuyers = new JSpinner();
         label6 = new JLabel();
         sNumSellers = new JSpinner();
+        label9 = new JLabel();
+        sNumChoices = new JSpinner();
+        label12 = new JLabel();
+        sBargainRound = new JSpinner();
+        label13 = new JLabel();
+        sBargainFactor = new JSpinner();
         label7 = new JLabel();
         lASP = new JLabel();
         label8 = new JLabel();
@@ -178,10 +208,10 @@ public class MainWindow extends JFrame {
         //======== panel4 ========
         {
             panel4.setLayout(new GridBagLayout());
-            ((GridBagLayout)panel4.getLayout()).columnWidths = new int[] {0, 141, 0, 0, 0};
-            ((GridBagLayout)panel4.getLayout()).rowHeights = new int[] {0, 0, 0, 0};
-            ((GridBagLayout)panel4.getLayout()).columnWeights = new double[] {0.0, 0.0, 0.0, 0.0, 1.0E-4};
-            ((GridBagLayout)panel4.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 1.0E-4};
+            ((GridBagLayout)panel4.getLayout()).columnWidths = new int[] {0, 141, 0, 0, 0, 0};
+            ((GridBagLayout)panel4.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0};
+            ((GridBagLayout)panel4.getLayout()).columnWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
+            ((GridBagLayout)panel4.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 1.0E-4};
 
             //---- bSetup ----
             bSetup.setText("setup");
@@ -213,7 +243,15 @@ public class MainWindow extends JFrame {
             bStartExp.addActionListener(e -> bStartExp(e));
             panel4.add(bStartExp, new GridBagConstraints(3, 0, 1, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(2, 2, 7, 2), 0, 0));
+                new Insets(2, 2, 7, 7), 0, 0));
+
+            //---- toggleJudge ----
+            toggleJudge.setText("Able to Judge");
+            toggleJudge.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
+            toggleJudge.addActionListener(e -> toggleJudge(e));
+            panel4.add(toggleJudge, new GridBagConstraints(4, 0, 1, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
+                new Insets(0, 0, 5, 0), 0, 0));
 
             //---- lDay ----
             lDay.setText("Day: 0");
@@ -229,20 +267,20 @@ public class MainWindow extends JFrame {
                 GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                 new Insets(0, 0, 5, 5), 0, 0));
 
-            //---- toggleJudge ----
-            toggleJudge.setText("Able to Judge");
-            toggleJudge.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-            toggleJudge.addActionListener(e -> toggleJudge(e));
-            panel4.add(toggleJudge, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
+            //---- bStartSenseExp ----
+            bStartSenseExp.setText("Start Sensity Exp");
+            bStartSenseExp.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
+            bStartSenseExp.addActionListener(e -> bStartSenseExp(e));
+            panel4.add(bStartSenseExp, new GridBagConstraints(3, 1, 1, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 5, 5), 0, 0));
 
-            //---- lOutput ----
-            lOutput.setText("Output Experiment");
-            lOutput.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-            lOutput.addActionListener(e -> lOutput(e));
-            panel4.add(lOutput, new GridBagConstraints(3, 1, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+            //---- toggleChoose ----
+            toggleChoose.setText("Able to Choose");
+            toggleChoose.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
+            toggleChoose.addActionListener(e -> toggleChoose(e));
+            panel4.add(toggleChoose, new GridBagConstraints(4, 1, 1, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                 new Insets(0, 0, 5, 0), 0, 0));
 
             //---- sliderSpeed ----
@@ -255,7 +293,15 @@ public class MainWindow extends JFrame {
             sliderSpeed.addChangeListener(e -> sliderSpeedStateChanged(e));
             panel4.add(sliderSpeed, new GridBagConstraints(0, 2, 3, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(0, 0, 0, 5), 0, 0));
+                new Insets(0, 0, 5, 5), 0, 0));
+
+            //---- lOutput ----
+            lOutput.setText("Output Experiment");
+            lOutput.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
+            lOutput.addActionListener(e -> lOutput(e));
+            panel4.add(lOutput, new GridBagConstraints(3, 2, 1, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(0, 0, 5, 5), 0, 0));
         }
         contentPane.add(panel4, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
@@ -273,9 +319,9 @@ public class MainWindow extends JFrame {
             {
                 panel2.setLayout(new GridBagLayout());
                 ((GridBagLayout)panel2.getLayout()).columnWidths = new int[] {0, 0, 0};
-                ((GridBagLayout)panel2.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+                ((GridBagLayout)panel2.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
                 ((GridBagLayout)panel2.getLayout()).columnWeights = new double[] {0.0, 0.0, 1.0E-4};
-                ((GridBagLayout)panel2.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
+                ((GridBagLayout)panel2.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
 
                 //---- label2 ----
                 label2.setText("Buyer Strategy");
@@ -325,7 +371,7 @@ public class MainWindow extends JFrame {
                     new Insets(0, 0, 5, 5), 0, 0));
 
                 //---- sBudget ----
-                sBudget.setModel(new SpinnerNumberModel(500, 0, null, 1));
+                sBudget.setModel(new SpinnerNumberModel(1800.0, 0.0, null, 1.0));
                 sBudget.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
                 sBudget.addChangeListener(e -> sBudgetStateChanged(e));
                 panel2.add(sBudget, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
@@ -340,7 +386,7 @@ public class MainWindow extends JFrame {
                     new Insets(0, 0, 5, 5), 0, 0));
 
                 //---- sNumBuyers ----
-                sNumBuyers.setModel(new SpinnerNumberModel(50, 10, null, 1));
+                sNumBuyers.setModel(new SpinnerNumberModel(100, 10, null, 1));
                 sNumBuyers.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
                 sNumBuyers.addChangeListener(e -> sNumBuyersStateChanged(e));
                 panel2.add(sNumBuyers, new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0,
@@ -355,80 +401,121 @@ public class MainWindow extends JFrame {
                     new Insets(0, 0, 5, 5), 0, 0));
 
                 //---- sNumSellers ----
-                sNumSellers.setModel(new SpinnerNumberModel(50, 10, null, 1));
+                sNumSellers.setModel(new SpinnerNumberModel(100, 10, null, 1));
                 sNumSellers.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
                 sNumSellers.addChangeListener(e -> sNumSellersStateChanged(e));
                 panel2.add(sNumSellers, new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                     new Insets(0, 0, 5, 0), 0, 0));
 
+                //---- label9 ----
+                label9.setText("Num Choices");
+                label9.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
+                panel2.add(label9, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
+                    new Insets(0, 0, 5, 5), 0, 0));
+
+                //---- sNumChoices ----
+                sNumChoices.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
+                sNumChoices.setModel(new SpinnerNumberModel(4, 1, null, 1));
+                sNumChoices.addChangeListener(e -> spinner1StateChanged(e));
+                panel2.add(sNumChoices, new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 5, 0), 0, 0));
+
+                //---- label12 ----
+                label12.setText("Bargain Round");
+                panel2.add(label12, new GridBagConstraints(0, 6, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
+                    new Insets(0, 0, 5, 5), 0, 0));
+
+                //---- sBargainRound ----
+                sBargainRound.setModel(new SpinnerNumberModel(3, 1, null, 1));
+                sBargainRound.addChangeListener(e -> sBargainRoundStateChanged(e));
+                panel2.add(sBargainRound, new GridBagConstraints(1, 6, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 5, 0), 0, 0));
+
+                //---- label13 ----
+                label13.setText("Bargain Factor");
+                panel2.add(label13, new GridBagConstraints(0, 7, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
+                    new Insets(0, 0, 5, 5), 0, 0));
+
+                //---- sBargainFactor ----
+                sBargainFactor.setModel(new SpinnerNumberModel(1.5, 0.0, null, 1.0));
+                sBargainFactor.addChangeListener(e -> sBarginFactorStateChanged(e));
+                panel2.add(sBargainFactor, new GridBagConstraints(1, 7, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 5, 0), 0, 0));
+
                 //---- label7 ----
                 label7.setText("Avg Sale Price: ");
                 label7.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel2.add(label7, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0,
+                panel2.add(label7, new GridBagConstraints(0, 8, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
                     new Insets(0, 0, 5, 5), 0, 0));
 
                 //---- lASP ----
                 lASP.setText("0");
                 lASP.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel2.add(lASP, new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0,
+                panel2.add(lASP, new GridBagConstraints(1, 8, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                     new Insets(0, 0, 5, 0), 0, 0));
 
                 //---- label8 ----
                 label8.setText("% Start Money Used: ");
                 label8.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel2.add(label8, new GridBagConstraints(0, 6, 1, 1, 0.0, 0.0,
+                panel2.add(label8, new GridBagConstraints(0, 9, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
                     new Insets(0, 0, 5, 5), 0, 0));
 
                 //---- lpSMU ----
                 lpSMU.setText("0");
                 lpSMU.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel2.add(lpSMU, new GridBagConstraints(1, 6, 1, 1, 0.0, 0.0,
+                panel2.add(lpSMU, new GridBagConstraints(1, 9, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                     new Insets(0, 0, 5, 0), 0, 0));
 
                 //---- label10 ----
                 label10.setText("Num Sold out: ");
                 label10.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel2.add(label10, new GridBagConstraints(0, 7, 1, 1, 0.0, 0.0,
+                panel2.add(label10, new GridBagConstraints(0, 10, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
                     new Insets(0, 0, 5, 5), 0, 0));
 
                 //---- lNumSoldOut ----
                 lNumSoldOut.setText("0");
                 lNumSoldOut.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel2.add(lNumSoldOut, new GridBagConstraints(1, 7, 1, 1, 0.0, 0.0,
+                panel2.add(lNumSoldOut, new GridBagConstraints(1, 10, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                     new Insets(0, 0, 5, 0), 0, 0));
 
                 //---- label11 ----
                 label11.setText("Num Satisfied: ");
                 label11.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel2.add(label11, new GridBagConstraints(0, 8, 1, 1, 0.0, 0.0,
+                panel2.add(label11, new GridBagConstraints(0, 11, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
                     new Insets(0, 0, 5, 5), 0, 0));
 
                 //---- lNumSatisfied ----
                 lNumSatisfied.setText("0");
                 lNumSatisfied.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel2.add(lNumSatisfied, new GridBagConstraints(1, 8, 1, 1, 0.0, 0.0,
+                panel2.add(lNumSatisfied, new GridBagConstraints(1, 11, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                     new Insets(0, 0, 5, 0), 0, 0));
 
                 //---- label1 ----
                 label1.setText("Judge Deals: ");
                 label1.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel2.add(label1, new GridBagConstraints(0, 9, 1, 1, 0.0, 0.0,
+                panel2.add(label1, new GridBagConstraints(0, 12, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
                     new Insets(0, 0, 0, 5), 0, 0));
 
                 //---- lJudgeDeals ----
                 lJudgeDeals.setText("0");
                 lJudgeDeals.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
-                panel2.add(lJudgeDeals, new GridBagConstraints(1, 9, 1, 1, 0.0, 0.0,
+                panel2.add(lJudgeDeals, new GridBagConstraints(1, 12, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                     new Insets(0, 0, 0, 0), 0, 0));
             }
@@ -614,11 +701,13 @@ public class MainWindow extends JFrame {
     private JButton bGoOnce;
     private JButton bGo;
     public JButton bStartExp;
+    public JToggleButton toggleJudge;
     public JLabel lDay;
     private JLabel lSpeed;
-    public JToggleButton toggleJudge;
-    private JButton lOutput;
+    public JButton bStartSenseExp;
+    public JToggleButton toggleChoose;
     private JSlider sliderSpeed;
+    private JButton lOutput;
     private JPanel panel1;
     private JPanel panel2;
     private JLabel label2;
@@ -631,6 +720,12 @@ public class MainWindow extends JFrame {
     private JSpinner sNumBuyers;
     private JLabel label6;
     private JSpinner sNumSellers;
+    private JLabel label9;
+    private JSpinner sNumChoices;
+    private JLabel label12;
+    private JSpinner sBargainRound;
+    private JLabel label13;
+    private JSpinner sBargainFactor;
     private JLabel label7;
     public JLabel lASP;
     private JLabel label8;

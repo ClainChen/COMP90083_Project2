@@ -5,6 +5,7 @@ import com.example.model.agents.Buyer;
 import com.example.model.agents.BuyerManager;
 import com.example.model.agents.Seller;
 import com.example.model.agents.SellerManager;
+import com.example.model.utils.Enums;
 import com.example.model.utils.Parameters;
 import com.example.model.utils.TradesInADay;
 
@@ -24,17 +25,47 @@ public class ABM {
     public final Object lock = new Object();
     public boolean isRunning = false;
 
+    public Enums.BuyerStrategy buyerStrategy;
+    public Enums.SellerStrategy sellerStrategy;
+    public boolean isJudgement;
+    public boolean canChoose;
+    public int numChoices;
+    public int bargainRound;
+    public double bargainFactor;
+
+    public ABM(Enums.BuyerStrategy buyerStrategy, Enums.SellerStrategy sellerStrategy, boolean isJudgement, boolean canChoose,
+               int numChoices, int bargainRound, double bargainFactor){
+        supervisor = new Supervisor();
+        day = 0;
+        int delay = getSpeed();
+        timer = new Timer(delay, _ -> go_once());
+        this.buyerStrategy = buyerStrategy;
+        this.sellerStrategy = sellerStrategy;
+        this.isJudgement = isJudgement;
+        this.canChoose = canChoose;
+        this.numChoices = numChoices;
+        this.bargainRound = bargainRound;
+        this.bargainFactor = bargainFactor;
+    }
+
     public ABM(){
         supervisor = new Supervisor();
         day = 0;
         int delay = getSpeed();
         timer = new Timer(delay, _ -> go_once());
+        this.buyerStrategy = Parameters.buyerStrategy;
+        this.sellerStrategy = Parameters.sellerStrategy;
+        this.isJudgement = Parameters.isJudgement;
+        this.canChoose = Parameters.canChoose;
+        this.numChoices = Parameters.numChoices;
+        this.bargainRound = Parameters.bargainRound;
+        this.bargainFactor = Parameters.bargainFactor;
     }
 
 
     public void setup(){
-        buyerManager = new BuyerManager();
-        sellerManager = new SellerManager();
+        buyerManager = new BuyerManager(buyerStrategy);
+        sellerManager = new SellerManager(sellerStrategy);
         timer.stop();
 
         Main.mainWindow.lDay.setText("Day 0");
@@ -70,7 +101,15 @@ public class ABM {
         }
 
         for (Buyer b : buyerManager.buyers){
-            Seller s = sellerManager.getRandomSeller();
+            Seller s = null;
+            if (canChoose){
+                s = sellerManager.getBestRandomSeller(numChoices);
+            }else{
+                s = sellerManager.getRandomSeller();
+                if (s != null){
+                    s.potential_buyers += 1;
+                }
+            }
             if (s == null){
                 break;
             }
@@ -100,8 +139,8 @@ public class ABM {
     }
 
     public void experimentSetup(){
-        buyerManager = new BuyerManager();
-        sellerManager = new SellerManager();
+        buyerManager = new BuyerManager(buyerStrategy);
+        sellerManager = new SellerManager(sellerStrategy);
         timer.stop();
     }
 
@@ -115,7 +154,7 @@ public class ABM {
             isRunning = false;
             supervisor.day = day;
         }
-        if (day >= 500){
+        if (day >= 180){
             timer.stop();
             synchronized (lock){
                 lock.notify();
@@ -130,7 +169,7 @@ public class ABM {
         if (b.demand == 0 || s.inventory == 0){
             return;
         }
-        if (! Parameters.isJudgement){
+        if (! isJudgement){
             if (b.expectation >= s.price){
                 deal(b, s, s.price);
             }else{
@@ -143,9 +182,9 @@ public class ABM {
                 double judgedExp = b.expectation;
                 double judgedPrice = s.price;
                 boolean dealSucc = false;
-                for (int i = 0; i < 3; i++){
-                    judgedExp += Math.abs(Math.random() * 3 - 1);
-                    judgedPrice -= Math.abs(Math.random() * 3 - 1);
+                for (int i = 0; i < bargainRound; i++){
+                    judgedExp += Math.abs(Math.random() * bargainFactor);
+                    judgedPrice -= Math.abs(Math.random() * bargainFactor);
                     if (judgedExp >= judgedPrice){
                         dealSucc = true;
                         judgeDeal += 1;
@@ -159,7 +198,6 @@ public class ABM {
                 }
             }
         }
-        s.potential_buyers += 1;
     }
 
     public void deal(Buyer b, Seller s, double price){

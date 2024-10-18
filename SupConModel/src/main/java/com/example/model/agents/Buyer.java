@@ -15,14 +15,15 @@ public class Buyer {
     public double addonRate;
     public double reductionRate;
 
-    public Buyer(int id) {
+    public Buyer(int id, Enums.BuyerStrategy strategy) {
         this.id = id;
         this.startBudget = Parameters.startingBudget / 2 + (int) (Math.random() * (Parameters.startingBudget / 2));
         this.budget = this.startBudget;
         this.demand = 1 + (int) (Math.random() * Parameters.defaultDemand);
         this.expectation = Parameters.startExpectation / 2 + (int) (Math.random() * Parameters.startExpectation / 2);
+        this.strategy = strategy;
 
-        setStrategy(Parameters.buyerStrategy);
+        setStrategy(strategy);
     }
 
     public void decreaseExpectation() {
@@ -82,14 +83,14 @@ public class Buyer {
         switch (strategy){
             case NORMAL, RANDOM -> {
                 addonRate = Parameters.expectationAddonRate *  2.5;
-                reductionRate = Parameters.expectationReductionRate * 2.0;
+                reductionRate = Parameters.expectationReductionRate * 5.0;
             }
             case AGGRESSIVE -> {
                 addonRate = Parameters.expectationAddonRate * 7.5;
-                reductionRate = Parameters.expectationReductionRate * 0.8;
+                reductionRate = Parameters.expectationReductionRate * 1.5;
             }
             case MIX_UP -> {
-                int tag = (int) (Math.random() * 3);
+                int tag = (int) (Math.random() * 2);
                 switch (tag){
                     case 0 -> {
                         this.strategy = Enums.BuyerStrategy.NORMAL;
@@ -99,7 +100,7 @@ public class Buyer {
                     case 1 -> {
                         this.strategy = Enums.BuyerStrategy.AGGRESSIVE;
                         addonRate = Parameters.expectationAddonRate * 7.5;
-                        reductionRate = Parameters.expectationReductionRate * 0.8;
+                        reductionRate = Parameters.expectationReductionRate * 1.5;
                     }
                     case 2 -> {
                         this.strategy = Enums.BuyerStrategy.RANDOM;

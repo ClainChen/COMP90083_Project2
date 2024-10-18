@@ -2,12 +2,15 @@
   <artifact type="jar" build-on-make="true" name="SupConModel:jar">
     <output-path>$PROJECT_DIR$/out</output-path>
     <root id="archive" name="SupConModel.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
       <element id="module-output" name="SupConModel" />
-      <element id="extracted-dir" path="D:/maven-local-repository/com/formdev/flatlaf-fonts-jetbrains-mono/2.304/flatlaf-fonts-jetbrains-mono-2.304.jar" path-in-jar="/" />
       <element id="extracted-dir" path="D:/maven-local-repository/org/jdesktop/beansbinding/1.2.1/beansbinding-1.2.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="D:/maven-local-repository/com/formdev/flatlaf/3.5.1/flatlaf-3.5.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/maven-local-repository/com/formdev/flatlaf-fonts-jetbrains-mono/2.304/flatlaf-fonts-jetbrains-mono-2.304.jar" path-in-jar="/" />
       <element id="extracted-dir" path="D:/maven-local-repository/com/formdev/flatlaf-intellij-themes/3.5.1/flatlaf-intellij-themes-3.5.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="D:/maven-local-repository/org/jfree/jfreechart/1.5.3/jfreechart-1.5.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/maven-local-repository/com/formdev/flatlaf/3.5.1/flatlaf-3.5.1.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

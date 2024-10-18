@@ -10,12 +10,21 @@ public class Batch {
     public Enums.BuyerStrategy buyerStrategy;
     public Enums.SellerStrategy sellerStrategy;
     public boolean isJudgement;
+    public boolean canChoose;
+    public int numChoices;
+    public int bargainRounds;
+    public double bargainFactor;
 
-    public Batch(Enums.BuyerStrategy buyerStrategy, Enums.SellerStrategy sellerStrategy, boolean isJudgement) {
+    public Batch(Enums.BuyerStrategy buyerStrategy, Enums.SellerStrategy sellerStrategy, boolean isJudgement, boolean canChoose,
+                 int numChoices, int bargainRounds, double bargainFactor) {
         supervisors = new ArrayList<>();
         this.buyerStrategy = buyerStrategy;
         this.sellerStrategy = sellerStrategy;
         this.isJudgement = isJudgement;
+        this.canChoose = canChoose;
+        this.numChoices = numChoices;
+        this.bargainRounds = bargainRounds;
+        this.bargainFactor = bargainFactor;
     }
 
     public void addSupervisor(Supervisor supervisor) {
@@ -23,13 +32,16 @@ public class Batch {
     }
 
     public ArrayList<String> getAllCSVFormat(){
-        StringBuilder sb = new StringBuilder();
-        sb.append("Buyer Strategy,").append(buyerStrategy.toString()).append("\n");
-        sb.append("Seller Strategy,").append(sellerStrategy.toString()).append("\n");
-        sb.append("Is Judgement,").append(isJudgement).append("\n");
+        String sb = "Buyer Strategy," + buyerStrategy.toString() + "\n" +
+                "Seller Strategy," + sellerStrategy.toString() + "\n" +
+                "Is Judgement," + isJudgement + "\n" +
+                "Can Choose," + canChoose + "\n" +
+                "Num Choices," + numChoices + "\n" +
+                "Bargain Rounds," + bargainRounds + "\n" +
+                "Bargain Factor," + bargainFactor;
 
         ArrayList<String> allCSVs = new ArrayList<>();
-        allCSVs.add(sb.toString());
+        allCSVs.add(sb);
         for (Supervisor supervisor : supervisors) {
             allCSVs.add(supervisor.getCSVFormat());
         }
@@ -39,6 +51,7 @@ public class Batch {
 
     @Override
     public String toString(){
-        return buyerStrategy.name() + "-" + sellerStrategy.name() + "-" + isJudgement;
+        return "CHOICES-" + buyerStrategy.name() + "-" + sellerStrategy.name() + "-" + isJudgement + "-" + canChoose + "-" +
+                numChoices + "-" + bargainRounds + "-" + bargainFactor;
     }
 }

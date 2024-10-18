@@ -16,8 +16,8 @@ new FormModel {
 			"maximumSize": new java.awt.Dimension( 1600, 1200 )
 			"defaultCloseOperation": 3
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
-				"$columnSpecs": "0, 136, 0, 0"
-				"$rowSpecs": "0, 0, 0"
+				"$columnSpecs": "0, 136, 0, 0, 0"
+				"$rowSpecs": "0, 0, 0, 0"
 				"$hGap": 5
 				"$vGap": 5
 				"$alignLeft": true
@@ -62,6 +62,18 @@ new FormModel {
 					"gridx": 3
 					"insets": new java.awt.Insets( 2, 2, 2, 2 )
 				} )
+				add( new FormComponent( "javax.swing.JToggleButton" ) {
+					name: "toggleJudge"
+					"text": "Able to Judge"
+					"font": &Font1 new java.awt.Font( "JetBrains Mono", 0, 12 )
+					auxiliary() {
+						"JavaCodeGenerator.variableModifiers": 1
+					}
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "toggleJudge", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"hAlign": 0
+					"gridx": 4
+				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "lDay"
 					"text": "Day: 0"
@@ -82,27 +94,30 @@ new FormModel {
 					"gridy": 1
 					"hAlign": 0
 				} )
-				add( new FormComponent( "javax.swing.JToggleButton" ) {
-					name: "toggleJudge"
-					"text": "Able to Judge"
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "bStartSenseExp"
+					"text": "Start Sensity Exp"
 					"font": new java.awt.Font( "JetBrains Mono", 0, 12 )
 					auxiliary() {
 						"JavaCodeGenerator.variableModifiers": 1
 					}
-					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "toggleJudge", true ) )
-				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-					"gridy": 1
-					"hAlign": 0
-					"gridx": 2
-				} )
-				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "lOutput"
-					"text": "Output Experiment"
-					"font": new java.awt.Font( "JetBrains Mono", 0, 12 )
-					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "lOutput", true ) )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bStartSenseExp", true ) )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 					"gridx": 3
 					"gridy": 1
+				} )
+				add( new FormComponent( "javax.swing.JToggleButton" ) {
+					name: "toggleChoose"
+					"text": "Able to Choose"
+					"font": #Font1
+					auxiliary() {
+						"JavaCodeGenerator.variableModifiers": 1
+					}
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "toggleChoose", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"hAlign": 0
+					"gridy": 1
+					"gridx": 4
 				} )
 				add( new FormComponent( "javax.swing.JSlider" ) {
 					name: "sliderSpeed"
@@ -116,6 +131,15 @@ new FormModel {
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 					"gridy": 2
 					"gridwidth": 3
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "lOutput"
+					"text": "Output Experiment"
+					"font": new java.awt.Font( "JetBrains Mono", 0, 12 )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "lOutput", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 3
+					"gridy": 2
 				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 				"weighty": 1.0
@@ -132,7 +156,7 @@ new FormModel {
 				name: "panel1"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
 					"$columnSpecs": "0, 0"
-					"$rowSpecs": "0, 0, 0, 0, 0, 0, 0, 0, 0, 0"
+					"$rowSpecs": "0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0"
 					"$hGap": 5
 					"$vGap": 5
 					"$alignLeft": true
@@ -142,7 +166,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label2"
 						"text": "Buyer Strategy"
-						"font": &Font1 new java.awt.Font( "JetBrains Mono", 0, 12 )
+						"font": &Font2 new java.awt.Font( "JetBrains Mono", 0, 12 )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"hAlign": 4
 					} )
@@ -155,7 +179,7 @@ new FormModel {
 							addElement( "RANDOM" )
 							addElement( "MIXUP" )
 						}
-						"font": #Font1
+						"font": #Font2
 						auxiliary() {
 							"JavaCodeGenerator.variableModifiers": 1
 						}
@@ -166,7 +190,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label3"
 						"text": "Seller Strategy"
-						"font": #Font1
+						"font": #Font2
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridy": 1
 						"hAlign": 4
@@ -180,7 +204,7 @@ new FormModel {
 							addElement( "RANDOM" )
 							addElement( "MIXUP" )
 						}
-						"font": #Font1
+						"font": #Font2
 						auxiliary() {
 							"JavaCodeGenerator.variableModifiers": 1
 						}
@@ -192,7 +216,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label4"
 						"text": "Starting Budget"
-						"font": &Font2 new java.awt.Font( "JetBrains Mono", 0, 12 )
+						"font": &Font3 new java.awt.Font( "JetBrains Mono", 0, 12 )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridy": 2
 						"hAlign": 4
@@ -200,10 +224,11 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JSpinner" ) {
 						name: "sBudget"
 						"model": new javax.swing.SpinnerNumberModel {
-							minimum: 0
-							value: 500
+							minimum: 0.0
+							stepSize: 1.0
+							value: 1800.0
 						}
-						"font": #Font2
+						"font": #Font3
 						addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "sBudgetStateChanged", true ) )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 1
@@ -212,7 +237,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label5"
 						"text": "Num Buyers"
-						"font": #Font2
+						"font": #Font3
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridy": 3
 						"hAlign": 4
@@ -221,9 +246,9 @@ new FormModel {
 						name: "sNumBuyers"
 						"model": new javax.swing.SpinnerNumberModel {
 							minimum: 10
-							value: 50
+							value: 100
 						}
-						"font": #Font2
+						"font": #Font3
 						addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "sNumBuyersStateChanged", true ) )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 1
@@ -232,7 +257,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label6"
 						"text": "Num Sellers"
-						"font": #Font2
+						"font": #Font3
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridy": 4
 						"hAlign": 4
@@ -241,92 +266,149 @@ new FormModel {
 						name: "sNumSellers"
 						"model": new javax.swing.SpinnerNumberModel {
 							minimum: 10
-							value: 50
+							value: 100
 						}
-						"font": #Font2
+						"font": #Font3
 						addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "sNumSellersStateChanged", true ) )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 1
 						"gridy": 4
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label7"
-						"text": "Avg Sale Price: "
-						"font": &Font3 new java.awt.Font( "JetBrains Mono", 0, 12 )
+						name: "label9"
+						"text": "Num Choices"
+						"font": &Font4 new java.awt.Font( "JetBrains Mono", 0, 12 )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridy": 5
+						"hAlign": 4
+					} )
+					add( new FormComponent( "javax.swing.JSpinner" ) {
+						name: "sNumChoices"
+						"font": #Font4
+						"model": new javax.swing.SpinnerNumberModel {
+							minimum: 1
+							value: 4
+						}
+						addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "spinner1StateChanged", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 1
+						"gridy": 5
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label12"
+						"text": "Bargain Round"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridy": 6
+						"hAlign": 4
+					} )
+					add( new FormComponent( "javax.swing.JSpinner" ) {
+						name: "sBargainRound"
+						"model": new javax.swing.SpinnerNumberModel {
+							minimum: 1
+							value: 3
+						}
+						addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "sBargainRoundStateChanged", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 1
+						"gridy": 6
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label13"
+						"text": "Bargain Factor"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridy": 7
+						"hAlign": 4
+					} )
+					add( new FormComponent( "javax.swing.JSpinner" ) {
+						name: "sBargainFactor"
+						"model": new javax.swing.SpinnerNumberModel {
+							minimum: 0.0
+							stepSize: 1.0
+							value: 1.5
+						}
+						addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "sBarginFactorStateChanged", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 1
+						"gridy": 7
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label7"
+						"text": "Avg Sale Price: "
+						"font": &Font5 new java.awt.Font( "JetBrains Mono", 0, 12 )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridy": 8
 						"hAlign": 4
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "lASP"
 						"text": "0"
-						"font": &Font4 new java.awt.Font( "JetBrains Mono", 0, 12 )
+						"font": &Font6 new java.awt.Font( "JetBrains Mono", 0, 12 )
 						auxiliary() {
 							"JavaCodeGenerator.variableModifiers": 1
 						}
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 1
-						"gridy": 5
+						"gridy": 8
 						"hAlign": 0
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label8"
 						"text": "% Start Money Used: "
-						"font": #Font3
+						"font": #Font5
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-						"gridy": 6
+						"gridy": 9
 						"hAlign": 4
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "lpSMU"
 						"text": "0"
-						"font": #Font4
+						"font": #Font6
 						auxiliary() {
 							"JavaCodeGenerator.variableModifiers": 1
 						}
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 1
-						"gridy": 6
+						"gridy": 9
 						"hAlign": 0
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label10"
 						"text": "Num Sold out: "
-						"font": &Font5 new java.awt.Font( "JetBrains Mono", 0, 12 )
+						"font": &Font7 new java.awt.Font( "JetBrains Mono", 0, 12 )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-						"gridy": 7
+						"gridy": 10
 						"hAlign": 4
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "lNumSoldOut"
 						"text": "0"
-						"font": #Font5
+						"font": #Font7
 						auxiliary() {
 							"JavaCodeGenerator.variableModifiers": 1
 						}
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 1
-						"gridy": 7
+						"gridy": 10
 						"hAlign": 0
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label11"
 						"text": "Num Satisfied: "
-						"font": #Font5
+						"font": #Font7
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-						"gridy": 8
+						"gridy": 11
 						"hAlign": 4
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "lNumSatisfied"
 						"text": "0"
-						"font": #Font5
+						"font": #Font7
 						auxiliary() {
 							"JavaCodeGenerator.variableModifiers": 1
 						}
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 1
-						"gridy": 8
+						"gridy": 11
 						"hAlign": 0
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
@@ -334,7 +416,7 @@ new FormModel {
 						"text": "Judge Deals: "
 						"font": new java.awt.Font( "JetBrains Mono", 0, 12 )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-						"gridy": 9
+						"gridy": 12
 						"hAlign": 4
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
@@ -346,7 +428,7 @@ new FormModel {
 						}
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 1
-						"gridy": 9
+						"gridy": 12
 						"hAlign": 0
 					} )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {

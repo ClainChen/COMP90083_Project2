@@ -14,16 +14,26 @@ public class Experiment implements Runnable {
     public Enums.BuyerStrategy buyerStrategy;
     public Enums.SellerStrategy sellerStrategy;
     public Boolean isJudgement;
+    public boolean canChoose;
+    public int numChoices;
+    public int bargainRound;
+    public double bargainFactor;
     public int batchSize;
     public int expID;
     public int completedExp;
 
-    public Experiment(int expID, Enums.BuyerStrategy buyerStrategy, Enums.SellerStrategy sellerStrategy, Boolean isJudgement, int batchSize) {
+    public Experiment(int expID, Enums.BuyerStrategy buyerStrategy, Enums.SellerStrategy sellerStrategy,
+                      boolean isJudgement, boolean canChoose, int batchSize,
+                      int numChoices, int bargainRound, double bargainFactor) {
         this.buyerStrategy = buyerStrategy;
         this.sellerStrategy = sellerStrategy;
         this.isJudgement = isJudgement;
+        this.canChoose = canChoose;
         this.batchSize = batchSize;
         this.expID = expID;
+        this.numChoices = numChoices;
+        this.bargainRound = bargainRound;
+        this.bargainFactor = bargainFactor;
         completedExp = 0;
     }
 
@@ -66,9 +76,9 @@ public class Experiment implements Runnable {
     @Override
     public void run() {
 //        System.out.println("Experiment ID " + expID + "  started");
-        batch = new Batch(buyerStrategy, sellerStrategy, isJudgement);
+        batch = new Batch(buyerStrategy, sellerStrategy, isJudgement, canChoose, numChoices, bargainRound, bargainFactor);
         for (int i = 0; i < batchSize; i++) {
-            ABM abmQuest = new ABM();
+            ABM abmQuest = new ABM(buyerStrategy, sellerStrategy, isJudgement, canChoose, numChoices, bargainRound, bargainFactor);
             new Thread(() -> {
                 abmQuest.experimentSetup();
                 abmQuest.quickSpeed();
